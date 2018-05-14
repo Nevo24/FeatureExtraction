@@ -1,0 +1,448 @@
+<html>
+<head>
+<title>tests coverage</title>
+<link rel ="stylesheet" type="text/css" href="../../../../../../style.css" title="Style">
+<script type="text/javascript" src="../../../../../../sorttable.js"></script>
+<script type="text/javascript">
+  targetPage = "" + window.location.search;
+  if (targetPage != "" && targetPage != "undefined")
+    targetPage = targetPage.substring(1);
+  if (targetPage.indexOf(":") != -1 || (targetPage != "" && !validURL(targetPage)))
+    targetPage = "undefined";
+  function validURL(url) {
+    var pos = url.indexOf(".html");
+    if (pos == -1 || pos != url.length - 5)
+      return false;
+    var allowNumber = false;
+    var allowSep = false;
+    var seenDot = false;
+    for (var i = 0; i < url.length - 5; i++) {
+      var ch = url.charAt(i);
+      if ('a' <= ch && ch <= 'z' ||
+          'A' <= ch && ch <= 'Z' ||
+          ch == '$' ||
+          ch == '_') {
+            allowNumber = true;
+            allowSep = true;
+      } else if ('0' <= ch && ch <= '9' ||
+                 ch == '-') {
+                   if (!allowNumber)
+                     return false;
+      } else if (ch == '/' || ch == '.') {
+        if (!allowSep)
+          return false;
+        allowNumber = false;
+        allowSep = false;
+        if (ch == '.')
+          seenDot = true;
+        if (ch == '/' && seenDot)
+          return false;
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }
+  function loadFrames() {
+    if (targetPage != "" && targetPage != "undefined")
+      top.classFrame.location = top.targetPage;
+  }
+</script>
+</head>
+<body>
+<table>
+<tr>
+<td>
+<a href="../../../../../../index.html?org/apache/hive/service/cli/thrift/TCLIService$Client.html" target="_top">Frames</a>
+<a href="TCLIService$Client.html" target="_top">No Frames</a>
+</td>
+</tr>
+</table>
+<p>
+ <table cellspacing="0" cellpadding="0"class="report">
+ <tr class="report">
+ <th class="report">&nbsp;</th>
+ <th class="report">%method</th>
+ <th class="report">%block</th>
+ <th class="report">%branch</th>
+ <th class="report">%line</th>
+ </tr>
+ <tr class="report">
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TCLIService$Client</span></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/59)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/97)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/38)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/213)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ </tr>
+ </table>
+ <p>
+ <p>
+ <table cellspacing="0" cellpadding="0"class="report" id="mcoverage">
+ <tr class="report">
+ <th class="report">hit count</th>
+ <th class="report">method  name</th>
+ <th class="report">method modifiers</th>
+ <th class="report">method signature</th>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_133">&lt;init&gt;</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void &lt;init&gt;(org.apache.thrift.protocol.TProtocol)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_137">&lt;init&gt;</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void &lt;init&gt;(org.apache.thrift.protocol.TProtocol,org.apache.thrift.protocol.TProtocol)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_533">CancelDelegationToken</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TCancelDelegationTokenResp CancelDelegationToken(org.apache.hive.service.cli.thrift.TCancelDelegationTokenReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_418">CancelOperation</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TCancelOperationResp CancelOperation(org.apache.hive.service.cli.thrift.TCancelOperationReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_441">CloseOperation</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TCloseOperationResp CloseOperation(org.apache.hive.service.cli.thrift.TCloseOperationReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_165">CloseSession</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TCloseSessionResp CloseSession(org.apache.hive.service.cli.thrift.TCloseSessionReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_211">ExecuteStatement</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TExecuteStatementResp ExecuteStatement(org.apache.hive.service.cli.thrift.TExecuteStatementReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_487">FetchResults</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TFetchResultsResp FetchResults(org.apache.hive.service.cli.thrift.TFetchResultsReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_257">GetCatalogs</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetCatalogsResp GetCatalogs(org.apache.hive.service.cli.thrift.TGetCatalogsReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_349">GetColumns</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetColumnsResp GetColumns(org.apache.hive.service.cli.thrift.TGetColumnsReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_510">GetDelegationToken</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetDelegationTokenResp GetDelegationToken(org.apache.hive.service.cli.thrift.TGetDelegationTokenReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_372">GetFunctions</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetFunctionsResp GetFunctions(org.apache.hive.service.cli.thrift.TGetFunctionsReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_188">GetInfo</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetInfoResp GetInfo(org.apache.hive.service.cli.thrift.TGetInfoReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_395">GetOperationStatus</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetOperationStatusResp GetOperationStatus(org.apache.hive.service.cli.thrift.TGetOperationStatusReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_464">GetResultSetMetadata</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetResultSetMetadataResp GetResultSetMetadata(org.apache.hive.service.cli.thrift.TGetResultSetMetadataReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_280">GetSchemas</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetSchemasResp GetSchemas(org.apache.hive.service.cli.thrift.TGetSchemasReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_326">GetTableTypes</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetTableTypesResp GetTableTypes(org.apache.hive.service.cli.thrift.TGetTableTypesReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_303">GetTables</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetTablesResp GetTables(org.apache.hive.service.cli.thrift.TGetTablesReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_234">GetTypeInfo</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetTypeInfoResp GetTypeInfo(org.apache.hive.service.cli.thrift.TGetTypeInfoReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_142">OpenSession</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TOpenSessionResp OpenSession(org.apache.hive.service.cli.thrift.TOpenSessionReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_556">RenewDelegationToken</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TRenewDelegationTokenResp RenewDelegationToken(org.apache.hive.service.cli.thrift.TRenewDelegationTokenReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_546">recv_CancelDelegationToken</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TCancelDelegationTokenResp recv_CancelDelegationToken()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_431">recv_CancelOperation</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TCancelOperationResp recv_CancelOperation()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_454">recv_CloseOperation</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TCloseOperationResp recv_CloseOperation()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_178">recv_CloseSession</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TCloseSessionResp recv_CloseSession()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_224">recv_ExecuteStatement</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TExecuteStatementResp recv_ExecuteStatement()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_500">recv_FetchResults</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TFetchResultsResp recv_FetchResults()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_270">recv_GetCatalogs</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetCatalogsResp recv_GetCatalogs()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_362">recv_GetColumns</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetColumnsResp recv_GetColumns()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_523">recv_GetDelegationToken</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetDelegationTokenResp recv_GetDelegationToken()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_385">recv_GetFunctions</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetFunctionsResp recv_GetFunctions()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_201">recv_GetInfo</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetInfoResp recv_GetInfo()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_408">recv_GetOperationStatus</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetOperationStatusResp recv_GetOperationStatus()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_477">recv_GetResultSetMetadata</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetResultSetMetadataResp recv_GetResultSetMetadata()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_293">recv_GetSchemas</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetSchemasResp recv_GetSchemas()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_339">recv_GetTableTypes</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetTableTypesResp recv_GetTableTypes()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_316">recv_GetTables</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetTablesResp recv_GetTables()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_247">recv_GetTypeInfo</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TGetTypeInfoResp recv_GetTypeInfo()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_155">recv_OpenSession</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TOpenSessionResp recv_OpenSession()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_569">recv_RenewDelegationToken</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TRenewDelegationTokenResp recv_RenewDelegationToken()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_539">send_CancelDelegationToken</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_CancelDelegationToken(org.apache.hive.service.cli.thrift.TCancelDelegationTokenReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_424">send_CancelOperation</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_CancelOperation(org.apache.hive.service.cli.thrift.TCancelOperationReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_447">send_CloseOperation</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_CloseOperation(org.apache.hive.service.cli.thrift.TCloseOperationReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_171">send_CloseSession</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_CloseSession(org.apache.hive.service.cli.thrift.TCloseSessionReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_217">send_ExecuteStatement</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_ExecuteStatement(org.apache.hive.service.cli.thrift.TExecuteStatementReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_493">send_FetchResults</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_FetchResults(org.apache.hive.service.cli.thrift.TFetchResultsReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_263">send_GetCatalogs</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_GetCatalogs(org.apache.hive.service.cli.thrift.TGetCatalogsReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_355">send_GetColumns</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_GetColumns(org.apache.hive.service.cli.thrift.TGetColumnsReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_516">send_GetDelegationToken</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_GetDelegationToken(org.apache.hive.service.cli.thrift.TGetDelegationTokenReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_378">send_GetFunctions</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_GetFunctions(org.apache.hive.service.cli.thrift.TGetFunctionsReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_194">send_GetInfo</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_GetInfo(org.apache.hive.service.cli.thrift.TGetInfoReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_401">send_GetOperationStatus</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_GetOperationStatus(org.apache.hive.service.cli.thrift.TGetOperationStatusReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_470">send_GetResultSetMetadata</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_GetResultSetMetadata(org.apache.hive.service.cli.thrift.TGetResultSetMetadataReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_286">send_GetSchemas</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_GetSchemas(org.apache.hive.service.cli.thrift.TGetSchemasReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_332">send_GetTableTypes</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_GetTableTypes(org.apache.hive.service.cli.thrift.TGetTableTypesReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_309">send_GetTables</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_GetTables(org.apache.hive.service.cli.thrift.TGetTablesReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_240">send_GetTypeInfo</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_GetTypeInfo(org.apache.hive.service.cli.thrift.TGetTypeInfoReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_148">send_OpenSession</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_OpenSession(org.apache.hive.service.cli.thrift.TOpenSessionReq)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_562">send_RenewDelegationToken</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void send_RenewDelegationToken(org.apache.hive.service.cli.thrift.TRenewDelegationTokenReq)</span></td>
+ </tr>
+ </table>
+ <p>
+ <table cellspacing="0" cellpadding="0" class="src">
+ </table>
+<p>
+<p><table cellpadding="0" cellspacing="0" class="report">  <tr class="report">    <td class="reportText"><span class="text">    Report generated 5/10/18 1:22 AM    </span></td>  </tr></table>
+</body>
+</html>

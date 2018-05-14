@@ -1,0 +1,382 @@
+<html>
+<head>
+<title>tests coverage</title>
+<link rel ="stylesheet" type="text/css" href="../../../../../../style.css" title="Style">
+<script type="text/javascript" src="../../../../../../sorttable.js"></script>
+<script type="text/javascript">
+  targetPage = "" + window.location.search;
+  if (targetPage != "" && targetPage != "undefined")
+    targetPage = targetPage.substring(1);
+  if (targetPage.indexOf(":") != -1 || (targetPage != "" && !validURL(targetPage)))
+    targetPage = "undefined";
+  function validURL(url) {
+    var pos = url.indexOf(".html");
+    if (pos == -1 || pos != url.length - 5)
+      return false;
+    var allowNumber = false;
+    var allowSep = false;
+    var seenDot = false;
+    for (var i = 0; i < url.length - 5; i++) {
+      var ch = url.charAt(i);
+      if ('a' <= ch && ch <= 'z' ||
+          'A' <= ch && ch <= 'Z' ||
+          ch == '$' ||
+          ch == '_') {
+            allowNumber = true;
+            allowSep = true;
+      } else if ('0' <= ch && ch <= '9' ||
+                 ch == '-') {
+                   if (!allowNumber)
+                     return false;
+      } else if (ch == '/' || ch == '.') {
+        if (!allowSep)
+          return false;
+        allowNumber = false;
+        allowSep = false;
+        if (ch == '.')
+          seenDot = true;
+        if (ch == '/' && seenDot)
+          return false;
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }
+  function loadFrames() {
+    if (targetPage != "" && targetPage != "undefined")
+      top.classFrame.location = top.targetPage;
+  }
+</script>
+</head>
+<body>
+<table>
+<tr>
+<td>
+<a href="../../../../../../index.html?org/apache/hive/service/cli/thrift/TStatus.html" target="_top">Frames</a>
+<a href="TStatus.html" target="_top">No Frames</a>
+</td>
+</tr>
+</table>
+<p>
+ <table cellspacing="0" cellpadding="0"class="report">
+ <tr class="report">
+ <th class="report">&nbsp;</th>
+ <th class="report">%method</th>
+ <th class="report">%block</th>
+ <th class="report">%branch</th>
+ <th class="report">%line</th>
+ </tr>
+ <tr class="report">
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TStatus</span></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>25</b>%(12/48)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="  25"></td><td class="percentUnCovered" width="75.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>5</b>%(12/229)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   5"></td><td class="percentUnCovered" width="95.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/186)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>13</b>%(38/296)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="  13"></td><td class="percentUnCovered" width="87.0"></td></tr></table></td></tr></table></td>
+ </tr>
+ </table>
+ <p>
+ <p>
+ <table cellspacing="0" cellpadding="0"class="report" id="mcoverage">
+ <tr class="report">
+ <th class="report">hit count</th>
+ <th class="report">method  name</th>
+ <th class="report">method modifiers</th>
+ <th class="report">method signature</th>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">3</span></td>
+ <td class="reportText"><span class="text"><a href="#src_35cl">&lt;clinit&gt;</a></span></td>
+ <td class="reportText"><span class="text">[static]</span></td>
+ <td class="reportText"><span class="text">void &lt;clinit&gt;()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">4</span></td>
+ <td class="reportText"><span class="text"><a href="#src_151">&lt;init&gt;</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void &lt;init&gt;()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">4</span></td>
+ <td class="reportText"><span class="text"><a href="#src_157">&lt;init&gt;</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void &lt;init&gt;(org.apache.hive.service.cli.thrift.TStatusCode)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_164">&lt;init&gt;</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void &lt;init&gt;(org.apache.hive.service.cli.thrift.TStatus)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_239">addToInfoMessages</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void addToInfoMessages(java.lang.String)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_191">clear</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void clear()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_517">compareTo</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">int compareTo(org.apache.hive.service.cli.thrift.TStatus)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_186">deepCopy</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TStatus deepCopy()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_425">equals</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">boolean equals(java.lang.Object)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_433">equals</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">boolean equals(org.apache.hive.service.cli.thrift.TStatus)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_578">fieldForId</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TStatus$_Fields fieldForId(int)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_292">getErrorCode</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">int getErrorCode()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">2</span></td>
+ <td class="reportText"><span class="text"><a href="#src_314">getErrorMessage</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">java.lang.String getErrorMessage()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_382">getFieldValue</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">java.lang.Object getFieldValue(org.apache.hive.service.cli.thrift.TStatus$_Fields)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">2</span></td>
+ <td class="reportText"><span class="text"><a href="#src_246">getInfoMessages</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">java.util.List getInfoMessages()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_235">getInfoMessagesIterator</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">java.util.Iterator getInfoMessagesIterator()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_231">getInfoMessagesSize</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">int getInfoMessagesSize()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">1</span></td>
+ <td class="reportText"><span class="text"><a href="#src_269">getSqlState</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">java.lang.String getSqlState()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">2</span></td>
+ <td class="reportText"><span class="text"><a href="#src_204">getStatusCode</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">org.apache.hive.service.cli.thrift.TStatusCode getStatusCode()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_486">hashCode</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">int hashCode()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_404">isSet</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">boolean isSet(org.apache.hive.service.cli.thrift.TStatus$_Fields)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_306">isSetErrorCode</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">boolean isSetErrorCode()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_327">isSetErrorMessage</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">boolean isSetErrorMessage()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_259">isSetInfoMessages</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">boolean isSetInfoMessages()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_282">isSetSqlState</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">boolean isSetSqlState()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_221">isSetStatusCode</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">boolean isSetStatusCode()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_582">read</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void read(org.apache.thrift.protocol.TProtocol)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_661">readObject</a></span></td>
+ <td class="reportText"><span class="text">[private]</span></td>
+ <td class="reportText"><span class="text">void readObject(java.io.ObjectInputStream)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">1</span></td>
+ <td class="reportText"><span class="text"><a href="#src_296">setErrorCode</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void setErrorCode(int)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">1</span></td>
+ <td class="reportText"><span class="text"><a href="#src_310">setErrorCodeIsSet</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void setErrorCodeIsSet(boolean)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">2</span></td>
+ <td class="reportText"><span class="text"><a href="#src_318">setErrorMessage</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void setErrorMessage(java.lang.String)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_331">setErrorMessageIsSet</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void setErrorMessageIsSet(boolean)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_337">setFieldValue</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void setFieldValue(org.apache.hive.service.cli.thrift.TStatus$_Fields,java.lang.Object)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">2</span></td>
+ <td class="reportText"><span class="text"><a href="#src_250">setInfoMessages</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void setInfoMessages(java.util.List)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_263">setInfoMessagesIsSet</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void setInfoMessagesIsSet(boolean)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">1</span></td>
+ <td class="reportText"><span class="text"><a href="#src_273">setSqlState</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void setSqlState(java.lang.String)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_286">setSqlStateIsSet</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void setSqlStateIsSet(boolean)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_212">setStatusCode</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void setStatusCode(org.apache.hive.service.cli.thrift.TStatusCode)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_225">setStatusCodeIsSet</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void setStatusCodeIsSet(boolean)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_591">toString</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">java.lang.String toString()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_301">unsetErrorCode</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void unsetErrorCode()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_322">unsetErrorMessage</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void unsetErrorMessage()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_254">unsetInfoMessages</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void unsetInfoMessages()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_277">unsetSqlState</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void unsetSqlState()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_216">unsetStatusCode</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void unsetStatusCode()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_643">validate</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void validate()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_586">write</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void write(org.apache.thrift.protocol.TProtocol)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_652">writeObject</a></span></td>
+ <td class="reportText"><span class="text">[private]</span></td>
+ <td class="reportText"><span class="text">void writeObject(java.io.ObjectOutputStream)</span></td>
+ </tr>
+ </table>
+ <p>
+ <table cellspacing="0" cellpadding="0" class="src">
+ </table>
+<p>
+<p><table cellpadding="0" cellspacing="0" class="report">  <tr class="report">    <td class="reportText"><span class="text">    Report generated 5/10/18 1:22 AM    </span></td>  </tr></table>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<html>
+<head>
+<title>tests coverage</title>
+<link rel ="stylesheet" type="text/css" href="../../../../../style.css" title="Style">
+<script type="text/javascript" src="../../../../../sorttable.js"></script>
+<script type="text/javascript">
+  targetPage = "" + window.location.search;
+  if (targetPage != "" && targetPage != "undefined")
+    targetPage = targetPage.substring(1);
+  if (targetPage.indexOf(":") != -1 || (targetPage != "" && !validURL(targetPage)))
+    targetPage = "undefined";
+  function validURL(url) {
+    var pos = url.indexOf(".html");
+    if (pos == -1 || pos != url.length - 5)
+      return false;
+    var allowNumber = false;
+    var allowSep = false;
+    var seenDot = false;
+    for (var i = 0; i < url.length - 5; i++) {
+      var ch = url.charAt(i);
+      if ('a' <= ch && ch <= 'z' ||
+          'A' <= ch && ch <= 'Z' ||
+          ch == '$' ||
+          ch == '_') {
+            allowNumber = true;
+            allowSep = true;
+      } else if ('0' <= ch && ch <= '9' ||
+                 ch == '-') {
+                   if (!allowNumber)
+                     return false;
+      } else if (ch == '/' || ch == '.') {
+        if (!allowSep)
+          return false;
+        allowNumber = false;
+        allowSep = false;
+        if (ch == '.')
+          seenDot = true;
+        if (ch == '/' && seenDot)
+          return false;
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }
+  function loadFrames() {
+    if (targetPage != "" && targetPage != "undefined")
+      top.classFrame.location = top.targetPage;
+  }
+</script>
+</head>
+<body>
+<table>
+<tr>
+<td>
+<a href="../../../../../index.html?org/apache/commons/math4/linear/SparseFieldMatrixTest.html" target="_top">Frames</a>
+<a href="SparseFieldMatrixTest.html" target="_top">No Frames</a>
+</td>
+</tr>
+</table>
+<p>
+ <table cellspacing="0" cellpadding="0"class="report">
+ <tr class="report">
+ <th class="report">&nbsp;</th>
+ <th class="report">%method</th>
+ <th class="report">%block</th>
+ <th class="report">%branch</th>
+ <th class="report">%line</th>
+ </tr>
+ <tr class="report">
+ <td class="reportText"><span class="text">org.apache.commons.math4.linear.SparseFieldMatrixTest</span></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/29)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/125)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/22)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/396)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ </tr>
+ </table>
+ <p>
+ <p>
+ <table cellspacing="0" cellpadding="0"class="report" id="mcoverage">
+ <tr class="report">
+ <th class="report">hit count</th>
+ <th class="report">method  name</th>
+ <th class="report">method modifiers</th>
+ <th class="report">method signature</th>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_115">&lt;init&gt;</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void &lt;init&gt;()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_684">assertClose</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">void assertClose(java.lang.String,org.apache.commons.math4.linear.FieldMatrix,org.apache.commons.math4.linear.FieldMatrix,double)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_695">assertClose</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">void assertClose(java.lang.String,org.apache.commons.math4.fraction.Fraction[],org.apache.commons.math4.fraction.Fraction[],double)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_568">columnToVector</a></span></td>
+ <td class="reportText"><span class="text">[private]</span></td>
+ <td class="reportText"><span class="text">org.apache.commons.math4.linear.FieldVector columnToVector(org.apache.commons.math4.fraction.Fraction[][])</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_705">createSparseMatrix</a></span></td>
+ <td class="reportText"><span class="text">[private]</span></td>
+ <td class="reportText"><span class="text">org.apache.commons.math4.linear.SparseFieldMatrix createSparseMatrix(org.apache.commons.math4.fraction.Fraction[][])</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_161">testAdd</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testAdd()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_177">testAddFail</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testAddFail()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_148">testCopyFunctions</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testCopyFunctions()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_135">testDimensions</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testDimensions()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_577">testEqualsAndHashCode</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testEqualsAndHashCode()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_385">testExamples</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testExamples()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_506">testGetColumnMatrix</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testGetColumnMatrix()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_548">testGetColumnVector</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testGetColumnVector()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_371">testGetEntry</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testGetEntry()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_485">testGetRowMatrix</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testGetRowMatrix()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_527">testGetRowVector</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testGetRowVector()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_352">testGetVectors</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testGetVectors()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_286">testMath209</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testMath209()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_206">testMultiply</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testMultiply()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_238">testMultiply2</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testMultiply2()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_269">testOperate</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testOperate()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_191">testPlusMinus</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testPlusMinus()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_326">testPremultiply</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testPremultiply()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_310">testPremultiplyVector</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testPremultiplyVector()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_261">testScalarAdd</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testScalarAdd()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_602">testSetSubMatrix</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testSetSubMatrix()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_420">testSubMatrix</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testSubMatrix()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_247">testTrace</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testTrace()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_298">testTranspose</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testTranspose()</span></td>
+ </tr>
+ </table>
+ <p>
+ <table cellspacing="0" cellpadding="0" class="src">
+ </table>
+<p>
+<p><table cellpadding="0" cellspacing="0" class="report">  <tr class="report">    <td class="reportText"><span class="text">    Report generated 5/10/18 1:22 AM    </span></td>  </tr></table>
+</body>
+</html>

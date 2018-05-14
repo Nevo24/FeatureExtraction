@@ -1,0 +1,328 @@
+<html>
+<head>
+<title>tests coverage</title>
+<link rel ="stylesheet" type="text/css" href="../../../../../../../style.css" title="Style">
+<script type="text/javascript" src="../../../../../../../sorttable.js"></script>
+<script type="text/javascript">
+  targetPage = "" + window.location.search;
+  if (targetPage != "" && targetPage != "undefined")
+    targetPage = targetPage.substring(1);
+  if (targetPage.indexOf(":") != -1 || (targetPage != "" && !validURL(targetPage)))
+    targetPage = "undefined";
+  function validURL(url) {
+    var pos = url.indexOf(".html");
+    if (pos == -1 || pos != url.length - 5)
+      return false;
+    var allowNumber = false;
+    var allowSep = false;
+    var seenDot = false;
+    for (var i = 0; i < url.length - 5; i++) {
+      var ch = url.charAt(i);
+      if ('a' <= ch && ch <= 'z' ||
+          'A' <= ch && ch <= 'Z' ||
+          ch == '$' ||
+          ch == '_') {
+            allowNumber = true;
+            allowSep = true;
+      } else if ('0' <= ch && ch <= '9' ||
+                 ch == '-') {
+                   if (!allowNumber)
+                     return false;
+      } else if (ch == '/' || ch == '.') {
+        if (!allowSep)
+          return false;
+        allowNumber = false;
+        allowSep = false;
+        if (ch == '.')
+          seenDot = true;
+        if (ch == '/' && seenDot)
+          return false;
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }
+  function loadFrames() {
+    if (targetPage != "" && targetPage != "undefined")
+      top.classFrame.location = top.targetPage;
+  }
+</script>
+</head>
+<body>
+<table>
+<tr>
+<td>
+<a href="../../../../../../../index.html?org/apache/commons/math4/geometry/euclidean/twod/PolygonsSetTest.html" target="_top">Frames</a>
+<a href="PolygonsSetTest.html" target="_top">No Frames</a>
+</td>
+</tr>
+</table>
+<p>
+ <table cellspacing="0" cellpadding="0"class="report">
+ <tr class="report">
+ <th class="report">&nbsp;</th>
+ <th class="report">%method</th>
+ <th class="report">%block</th>
+ <th class="report">%branch</th>
+ <th class="report">%line</th>
+ </tr>
+ <tr class="report">
+ <td class="reportText"><span class="text">org.apache.commons.math4.geometry.euclidean.twod.PolygonsSetTest</span></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/39)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/123)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/62)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/407)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ </tr>
+ </table>
+ <p>
+ <p>
+ <table cellspacing="0" cellpadding="0"class="report" id="mcoverage">
+ <tr class="report">
+ <th class="report">hit count</th>
+ <th class="report">method  name</th>
+ <th class="report">method modifiers</th>
+ <th class="report">method signature</th>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_43">&lt;init&gt;</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void &lt;init&gt;()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_1263">buildHalfLine</a></span></td>
+ <td class="reportText"><span class="text">[private]</span></td>
+ <td class="reportText"><span class="text">org.apache.commons.math4.geometry.partitioning.SubHyperplane buildHalfLine(org.apache.commons.math4.geometry.euclidean.twod.Cartesian2D,org.apache.commons.math4.geometry.euclidean.twod.Cartesian2D,boolean)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_1253">buildLine</a></span></td>
+ <td class="reportText"><span class="text">[private]</span></td>
+ <td class="reportText"><span class="text">org.apache.commons.math4.geometry.partitioning.SubHyperplane buildLine(org.apache.commons.math4.geometry.euclidean.twod.Cartesian2D,org.apache.commons.math4.geometry.euclidean.twod.Cartesian2D)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_1270">buildSegment</a></span></td>
+ <td class="reportText"><span class="text">[private]</span></td>
+ <td class="reportText"><span class="text">org.apache.commons.math4.geometry.partitioning.SubHyperplane buildSegment(org.apache.commons.math4.geometry.euclidean.twod.Cartesian2D,org.apache.commons.math4.geometry.euclidean.twod.Cartesian2D)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_1242">buildSet</a></span></td>
+ <td class="reportText"><span class="text">[private]</span></td>
+ <td class="reportText"><span class="text">org.apache.commons.math4.geometry.euclidean.twod.PolygonsSet buildSet(org.apache.commons.math4.geometry.euclidean.twod.Cartesian2D[][])</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_1286">checkInSegment</a></span></td>
+ <td class="reportText"><span class="text">[private]</span></td>
+ <td class="reportText"><span class="text">boolean checkInSegment(org.apache.commons.math4.geometry.euclidean.twod.Cartesian2D,org.apache.commons.math4.geometry.euclidean.twod.Cartesian2D,org.apache.commons.math4.geometry.euclidean.twod.Cartesian2D,double)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_1278">checkPoints</a></span></td>
+ <td class="reportText"><span class="text">[private]</span></td>
+ <td class="reportText"><span class="text">void checkPoints(org.apache.commons.math4.geometry.partitioning.Region$Location,org.apache.commons.math4.geometry.euclidean.twod.PolygonsSet,org.apache.commons.math4.geometry.euclidean.twod.Cartesian2D[])</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_1303">checkVertices</a></span></td>
+ <td class="reportText"><span class="text">[private]</span></td>
+ <td class="reportText"><span class="text">void checkVertices(org.apache.commons.math4.geometry.euclidean.twod.Cartesian2D[][],org.apache.commons.math4.geometry.euclidean.twod.Cartesian2D[][])</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_1257">intersectionAbscissa</a></span></td>
+ <td class="reportText"><span class="text">[private]</span></td>
+ <td class="reportText"><span class="text">double intersectionAbscissa(org.apache.commons.math4.geometry.euclidean.twod.Line,org.apache.commons.math4.geometry.euclidean.twod.Line)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_1174">testBoundarySimplification</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testBoundarySimplification()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_88">testBox</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testBox()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_728">testBug20040520</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testBug20040520()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_857">testBug20041003</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testBug20041003()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_661">testChoppedHexagon</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testChoppedHexagon()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_698">testConcentric</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testConcentric()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_575">testDifference</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testDifference()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_236">testDisjointPolygons</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testDisjointPolygons()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_126">testEmpty</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testEmpty()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_638">testEmptyDifference</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testEmptyDifference()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_142">testFull</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testFull()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_158">testHole</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testHole()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_1165">testInconsistentHyperplanes</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testInconsistentHyperplanes()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_95">testInfinite</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testInfinite()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_455">testIntersection</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testIntersection()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_931">testIssue880Complete</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testIssue880Complete()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_913">testIssue880Simplified</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testIssue880Simplified()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_1109">testIssue1162</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testIssue1162()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_303">testLineIntersection</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testLineIntersection()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_269">testOppositeHyperplanes</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testOppositeHyperplanes()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_47">testSimplyConnected</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testSimplyConnected()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_285">testSingularPoint</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testSingularPoint()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_904">testSqueezedHexa</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testSqueezedHexa()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_101">testStair</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testStair()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_1129">testThinRectangle</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testThinRectangle()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_1087">testTooThinBox</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testTooThinBox()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_391">testUnion</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testUnion()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_352">testUnlimitedSubHyperplane</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testUnlimitedSubHyperplane()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_1097">testWrongUsage</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testWrongUsage()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_504">testXor</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testXor()</span></td>
+ </tr>
+ </table>
+ <p>
+ <table cellspacing="0" cellpadding="0" class="src">
+ </table>
+<p>
+<p><table cellpadding="0" cellspacing="0" class="report">  <tr class="report">    <td class="reportText"><span class="text">    Report generated 5/10/18 1:22 AM    </span></td>  </tr></table>
+</body>
+</html>

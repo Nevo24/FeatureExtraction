@@ -1,0 +1,322 @@
+<html>
+<head>
+<title>tests coverage</title>
+<link rel ="stylesheet" type="text/css" href="../../../../../style.css" title="Style">
+<script type="text/javascript" src="../../../../../sorttable.js"></script>
+<script type="text/javascript">
+  targetPage = "" + window.location.search;
+  if (targetPage != "" && targetPage != "undefined")
+    targetPage = targetPage.substring(1);
+  if (targetPage.indexOf(":") != -1 || (targetPage != "" && !validURL(targetPage)))
+    targetPage = "undefined";
+  function validURL(url) {
+    var pos = url.indexOf(".html");
+    if (pos == -1 || pos != url.length - 5)
+      return false;
+    var allowNumber = false;
+    var allowSep = false;
+    var seenDot = false;
+    for (var i = 0; i < url.length - 5; i++) {
+      var ch = url.charAt(i);
+      if ('a' <= ch && ch <= 'z' ||
+          'A' <= ch && ch <= 'Z' ||
+          ch == '$' ||
+          ch == '_') {
+            allowNumber = true;
+            allowSep = true;
+      } else if ('0' <= ch && ch <= '9' ||
+                 ch == '-') {
+                   if (!allowNumber)
+                     return false;
+      } else if (ch == '/' || ch == '.') {
+        if (!allowSep)
+          return false;
+        allowNumber = false;
+        allowSep = false;
+        if (ch == '.')
+          seenDot = true;
+        if (ch == '/' && seenDot)
+          return false;
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }
+  function loadFrames() {
+    if (targetPage != "" && targetPage != "undefined")
+      top.classFrame.location = top.targetPage;
+  }
+</script>
+</head>
+<body>
+<table>
+<tr>
+<td>
+<a href="../../../../../index.html?org/apache/commons/math4/distribution/IntegerDistributionAbstractTest.html" target="_top">Frames</a>
+<a href="IntegerDistributionAbstractTest.html" target="_top">No Frames</a>
+</td>
+</tr>
+</table>
+<p>
+ <table cellspacing="0" cellpadding="0"class="report">
+ <tr class="report">
+ <th class="report">&nbsp;</th>
+ <th class="report">%method</th>
+ <th class="report">%block</th>
+ <th class="report">%branch</th>
+ <th class="report">%line</th>
+ </tr>
+ <tr class="report">
+ <td class="reportText"><span class="text">org.apache.commons.math4.distribution.IntegerDistributionAbstractTest</span></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/38)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/72)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/20)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>0</b>%(0/119)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="   0"></td><td class="percentUnCovered" width="100.0"></td></tr></table></td></tr></table></td>
+ </tr>
+ </table>
+ <p>
+ <p>
+ <table cellspacing="0" cellpadding="0"class="report" id="mcoverage">
+ <tr class="report">
+ <th class="report">hit count</th>
+ <th class="report">method  name</th>
+ <th class="report">method modifiers</th>
+ <th class="report">method signature</th>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_51">&lt;init&gt;</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void &lt;init&gt;()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_321">getCumulativeTestPoints</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">int[] getCumulativeTestPoints()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_335">getCumulativeTestValues</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">double[] getCumulativeTestValues()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_349">getDensityTestPoints</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">int[] getDensityTestPoints()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_363">getDensityTestValues</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">double[] getDensityTestValues()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_377">getDistribution</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">org.apache.commons.math4.distribution.IntegerDistribution getDistribution()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_391">getInverseCumulativeTestPoints</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">double[] getInverseCumulativeTestPoints()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_405">getInverseCumulativeTestValues</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">int[] getInverseCumulativeTestValues()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_419">getTolerance</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">double getTolerance()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_0">makeCumulativeTestPoints</a></span></td>
+ <td class="reportText"><span class="text">[public, abstract]</span></td>
+ <td class="reportText"><span class="text">int[] makeCumulativeTestPoints()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_0">makeCumulativeTestValues</a></span></td>
+ <td class="reportText"><span class="text">[public, abstract]</span></td>
+ <td class="reportText"><span class="text">double[] makeCumulativeTestValues()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_0">makeDensityTestPoints</a></span></td>
+ <td class="reportText"><span class="text">[public, abstract]</span></td>
+ <td class="reportText"><span class="text">int[] makeDensityTestPoints()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_0">makeDensityTestValues</a></span></td>
+ <td class="reportText"><span class="text">[public, abstract]</span></td>
+ <td class="reportText"><span class="text">double[] makeDensityTestValues()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_0">makeDistribution</a></span></td>
+ <td class="reportText"><span class="text">[public, abstract]</span></td>
+ <td class="reportText"><span class="text">org.apache.commons.math4.distribution.IntegerDistribution makeDistribution()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_0">makeInverseCumulativeTestPoints</a></span></td>
+ <td class="reportText"><span class="text">[public, abstract]</span></td>
+ <td class="reportText"><span class="text">double[] makeInverseCumulativeTestPoints()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_0">makeInverseCumulativeTestValues</a></span></td>
+ <td class="reportText"><span class="text">[public, abstract]</span></td>
+ <td class="reportText"><span class="text">int[] makeInverseCumulativeTestValues()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_100">makeLogDensityTestValues</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">double[] makeLogDensityTestValues()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_328">setCumulativeTestPoints</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">void setCumulativeTestPoints(int[])</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_342">setCumulativeTestValues</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">void setCumulativeTestValues(double[])</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_356">setDensityTestPoints</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">void setDensityTestPoints(int[])</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_370">setDensityTestValues</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">void setDensityTestValues(double[])</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_384">setDistribution</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">void setDistribution(org.apache.commons.math4.distribution.IntegerDistribution)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_398">setInverseCumulativeTestPoints</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">void setInverseCumulativeTestPoints(double[])</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_412">setInverseCumulativeTestValues</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">void setInverseCumulativeTestValues(int[])</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_426">setTolerance</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">void setTolerance(double)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_127">setUp</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void setUp()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_142">tearDown</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void tearDown()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_244">testConsistencyAtSupportBounds</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testConsistencyAtSupportBounds()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_230">testCumulativeProbabilities</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testCumulativeProbabilities()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_212">testDensities</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testDensities()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_267">testIllegalArguments</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testIllegalArguments()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_239">testInverseCumulativeProbabilities</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testInverseCumulativeProbabilities()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_221">testLogDensities</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testLogDensities()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_291">testSampling</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void testSampling()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_184">verifyCumulativeProbabilities</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">void verifyCumulativeProbabilities()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_159">verifyDensities</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">void verifyDensities()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_197">verifyInverseCumulativeProbabilities</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">void verifyInverseCumulativeProbabilities()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_171">verifyLogDensities</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">void verifyLogDensities()</span></td>
+ </tr>
+ </table>
+ <p>
+ <table cellspacing="0" cellpadding="0" class="src">
+ </table>
+<p>
+<p><table cellpadding="0" cellspacing="0" class="report">  <tr class="report">    <td class="reportText"><span class="text">    Report generated 5/10/18 1:22 AM    </span></td>  </tr></table>
+</body>
+</html>
