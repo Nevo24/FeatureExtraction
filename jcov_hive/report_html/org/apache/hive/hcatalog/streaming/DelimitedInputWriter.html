@@ -1,0 +1,190 @@
+<html>
+<head>
+<title>tests coverage</title>
+<link rel ="stylesheet" type="text/css" href="../../../../../style.css" title="Style">
+<script type="text/javascript" src="../../../../../sorttable.js"></script>
+<script type="text/javascript">
+  targetPage = "" + window.location.search;
+  if (targetPage != "" && targetPage != "undefined")
+    targetPage = targetPage.substring(1);
+  if (targetPage.indexOf(":") != -1 || (targetPage != "" && !validURL(targetPage)))
+    targetPage = "undefined";
+  function validURL(url) {
+    var pos = url.indexOf(".html");
+    if (pos == -1 || pos != url.length - 5)
+      return false;
+    var allowNumber = false;
+    var allowSep = false;
+    var seenDot = false;
+    for (var i = 0; i < url.length - 5; i++) {
+      var ch = url.charAt(i);
+      if ('a' <= ch && ch <= 'z' ||
+          'A' <= ch && ch <= 'Z' ||
+          ch == '$' ||
+          ch == '_') {
+            allowNumber = true;
+            allowSep = true;
+      } else if ('0' <= ch && ch <= '9' ||
+                 ch == '-') {
+                   if (!allowNumber)
+                     return false;
+      } else if (ch == '/' || ch == '.') {
+        if (!allowSep)
+          return false;
+        allowNumber = false;
+        allowSep = false;
+        if (ch == '.')
+          seenDot = true;
+        if (ch == '/' && seenDot)
+          return false;
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }
+  function loadFrames() {
+    if (targetPage != "" && targetPage != "undefined")
+      top.classFrame.location = top.targetPage;
+  }
+</script>
+</head>
+<body>
+<table>
+<tr>
+<td>
+<a href="../../../../../index.html?org/apache/hive/hcatalog/streaming/DelimitedInputWriter.html" target="_top">Frames</a>
+<a href="DelimitedInputWriter.html" target="_top">No Frames</a>
+</td>
+</tr>
+</table>
+<p>
+ <table cellspacing="0" cellpadding="0"class="report">
+ <tr class="report">
+ <th class="report">&nbsp;</th>
+ <th class="report">%method</th>
+ <th class="report">%block</th>
+ <th class="report">%branch</th>
+ <th class="report">%line</th>
+ </tr>
+ <tr class="report">
+ <td class="reportText"><span class="text">org.apache.hive.hcatalog.streaming.DelimitedInputWriter</span></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>94</b>%(15/16)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="  94"></td><td class="percentUnCovered" width="6.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>76</b>%(50/66)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="  76"></td><td class="percentUnCovered" width="24.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>60</b>%(24/40)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="  60"></td><td class="percentUnCovered" width="40.0"></td></tr></table></td></tr></table></td>
+ <td class="reportValue"><table class="percentGraph" cellpadding="0" cellspacing="0" align="right"><tr><td><span class="text"><b>83</b>%(76/92)</span></td><td><table class="percentGraph" cellpadding="0" cellspacing="0"><tr><td class="percentCovered" width="  83"></td><td class="percentUnCovered" width="17.0"></td></tr></table></td></tr></table></td>
+ </tr>
+ </table>
+ <p>
+ <p>
+ <table cellspacing="0" cellpadding="0"class="report" id="mcoverage">
+ <tr class="report">
+ <th class="report">hit count</th>
+ <th class="report">method  name</th>
+ <th class="report">method modifiers</th>
+ <th class="report">method signature</th>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">2</span></td>
+ <td class="reportText"><span class="text"><a href="#src_56cl">&lt;clinit&gt;</a></span></td>
+ <td class="reportText"><span class="text">[static]</span></td>
+ <td class="reportText"><span class="text">void &lt;clinit&gt;()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">13</span></td>
+ <td class="reportText"><span class="text"><a href="#src_73">&lt;init&gt;</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void &lt;init&gt;(java.lang.String[],java.lang.String,org.apache.hive.hcatalog.streaming.HiveEndPoint)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">13</span></td>
+ <td class="reportText"><span class="text"><a href="#src_92">&lt;init&gt;</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void &lt;init&gt;(java.lang.String[],java.lang.String,org.apache.hive.hcatalog.streaming.HiveEndPoint,org.apache.hadoop.hive.conf.HiveConf)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">13</span></td>
+ <td class="reportText"><span class="text"><a href="#src_115">&lt;init&gt;</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void &lt;init&gt;(java.lang.String[],java.lang.String,org.apache.hive.hcatalog.streaming.HiveEndPoint,org.apache.hadoop.hive.conf.HiveConf,char)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_uncovered"><span class="text">0</span></td>
+ <td class="reportText"><span class="text"><a href="#src_132">areFieldsInColOrder</a></span></td>
+ <td class="reportText"><span class="text">[private, static]</span></td>
+ <td class="reportText"><span class="text">boolean areFieldsInColOrder(int[])</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">9</span></td>
+ <td class="reportText"><span class="text"><a href="#src_250">createSerde</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe createSerde(org.apache.hadoop.hive.metastore.api.Table,org.apache.hadoop.hive.conf.HiveConf)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">70</span></td>
+ <td class="reportText"><span class="text"><a href="#src_233">encode</a></span></td>
+ <td class="reportText"><span class="text">[private]</span></td>
+ <td class="reportText"><span class="text">java.lang.Object encode(byte[])</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">13</span></td>
+ <td class="reportText"><span class="text"><a href="#src_261">getCols</a></span></td>
+ <td class="reportText"><span class="text">[private]</span></td>
+ <td class="reportText"><span class="text">java.util.ArrayList getCols(org.apache.hadoop.hive.metastore.api.Table)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">18</span></td>
+ <td class="reportText"><span class="text"><a href="#src_143">getFieldReordering</a></span></td>
+ <td class="reportText"><span class="text">[static]</span></td>
+ <td class="reportText"><span class="text">int[] getFieldReordering(java.lang.String[],java.util.List)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">9</span></td>
+ <td class="reportText"><span class="text"><a href="#src_224">getSerde</a></span></td>
+ <td class="reportText"><span class="text">[]</span></td>
+ <td class="reportText"><span class="text">org.apache.hadoop.hive.serde2.SerDe getSerde()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">83</span></td>
+ <td class="reportText"><span class="text"><a href="#src_270">getSerdeSeparator</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">char getSerdeSeparator()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">96</span></td>
+ <td class="reportText"><span class="text"><a href="#src_206">getTableColumns</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">java.util.ArrayList getTableColumns()</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">13</span></td>
+ <td class="reportText"><span class="text"><a href="#src_126">isReorderingNeeded</a></span></td>
+ <td class="reportText"><span class="text">[private]</span></td>
+ <td class="reportText"><span class="text">boolean isReorderingNeeded(java.lang.String,java.util.ArrayList)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">70</span></td>
+ <td class="reportText"><span class="text"><a href="#src_189">join</a></span></td>
+ <td class="reportText"><span class="text">[private, static]</span></td>
+ <td class="reportText"><span class="text">byte[] join(java.lang.String[],char)</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">70</span></td>
+ <td class="reportText"><span class="text"><a href="#src_171">reorderFields</a></span></td>
+ <td class="reportText"><span class="text">[protected]</span></td>
+ <td class="reportText"><span class="text">byte[] reorderFields(byte[])</span></td>
+ </tr>
+ <tr class="report">
+ <td class="reportValue_covered"><span class="text">70</span></td>
+ <td class="reportText"><span class="text"><a href="#src_213">write</a></span></td>
+ <td class="reportText"><span class="text">[public]</span></td>
+ <td class="reportText"><span class="text">void write(long,byte[])</span></td>
+ </tr>
+ </table>
+ <p>
+ <table cellspacing="0" cellpadding="0" class="src">
+ </table>
+<p>
+<p><table cellpadding="0" cellspacing="0" class="report">  <tr class="report">    <td class="reportText"><span class="text">    Report generated 5/10/18 1:22 AM    </span></td>  </tr></table>
+</body>
+</html>
