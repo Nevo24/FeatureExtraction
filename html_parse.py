@@ -3,13 +3,13 @@ import os
 from bs4 import BeautifulSoup
 
 upper_table = pd.DataFrame(index=[0],
-                           columns=['Class_Name', 'Method_%', 'Method_fraction', 'Block_%', 'Block_fraction',
+                           columns=['Class_path', 'Method_%', 'Method_fraction', 'Block_%', 'Block_fraction',
                                     'Branch_%',
                                     'Branch_fraction', 'Line_%', 'Line_fraction'])
 
 method_table = pd.DataFrame(index=[0],
-                            columns=['Class_Name', 'Hit_Count', 'Method_Name%', 'Method_Modifiers',
-                                     'Method_Signatures'])
+                            columns=['Class_path', 'Hit_count', 'Method_name%', 'Method_modifiers',
+                                     'Method_signatures'])
 
 
 def get_next_index(table, i):
@@ -43,7 +43,7 @@ def build_upper_table(soup, full_path):
     line_percentage = line_content.contents[0].contents[0]
     line_fraction = line_content.contents[1][1:]
 
-    new_line = {'Class_Name': full_path,
+    new_line = {'Class_path': full_path,
                 'Method_%': method_percentage,
                 'Method_fraction': method_fraction,
                 'Block_%': block_percentage,
@@ -65,11 +65,11 @@ def build_method_table(soup, full_path):
         method_name = table[i].contents[3].contents[0].contents[0].contents[0]
         method_modifires = table[i].contents[5].contents[0].contents[0]
         method_signature = table[i].contents[7].contents[0].contents[0]
-        new_line = {'Class_Name': full_path,
-                    'Hit_Count': hit_count,
+        new_line = {'Class_path': full_path,
+                    'Hit_count': hit_count,
                     'Method_Name%': method_name,
-                    'Method_Modifiers': method_modifires,
-                    'Method_Signatures': method_signature}
+                    'Method_modifiers': method_modifires,
+                    'Method_signatures': method_signature}
         method_table = method_table.append(new_line, ignore_index=True)
 
 
@@ -78,8 +78,10 @@ def parse(dir_path):
         for file in files:
             if file.endswith('.html') and not file.__contains__("package-"):
                 full_path = os.path.join(root, file)
-                print(full_path)
                 soup = BeautifulSoup(open(full_path), 'html.parser')
+                full_path = full_path.replace(".\\jcov_hive\\report_html\\", "")
+                full_path = full_path.replace(".html", "")
+                print(full_path)
                 build_upper_table(soup, full_path)
                 build_method_table(soup, full_path)
 
