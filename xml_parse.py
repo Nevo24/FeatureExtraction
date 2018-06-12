@@ -33,7 +33,7 @@ block_types = {'exit', 'methenter', 'br'}
 
 def add_to_table(class_path, method_name, meth_len, meth_access, bl_id, bl_start, bl_end, bl_count, bl_opcode, bl_type,
                  cond_true_start, cond_true_end, cond_true_count, cond_false_start, cond_false_end,
-                 cond_false_count, goto_start, goto_count, can_fall_through, is_cond):
+                 cond_false_count, goto_start, goto_count, can_fall_through, is_cond, is_goto):
     global table
     if not is_cond:
         cond_true_start = '-'
@@ -42,6 +42,9 @@ def add_to_table(class_path, method_name, meth_len, meth_access, bl_id, bl_start
         cond_false_start = '-'
         cond_false_end = '-'
         cond_false_count = '-'
+    if not is_goto:
+        goto_start = '-'
+        goto_count = '-'
     new_line = {'Class_path': class_path,
                 'Method_name': method_name,
                 'Method_len': meth_len,
@@ -75,11 +78,9 @@ for package in root:
     class_path = package.attrib['name'] + '.'
     class_path = class_path.replace(".", "\\")
     if 'package' in package.tag:
-        first_iter = True
         for projectClass in package:
-            if first_iter:
-                class_path += projectClass.attrib['name']
-                first_iter = False
+            class_path += projectClass.attrib['name']
+            first_iter = False
             print(class_path)
             if 'class' in projectClass.tag:
                 for method in projectClass:
@@ -99,6 +100,9 @@ for package in root:
                         cond_false_end = '-'
                         cond_false_id = '-'
                         cond_false_count = '-'
+                        goto_start = '-'
+                        goto_id = '-'
+                        goto_count = '-'
                         num_of_blocks = 0
                         for method_content in method:
                             if 'bl' in method_content.tag:
@@ -109,15 +113,24 @@ for package in root:
                                     bl_content = method_content[0]
                                 else:
                                     content_exists = False
-
                                 if content_exists and 'id' in bl_content.attrib:
                                     bl_id = bl_content.attrib['id']
                                 else:
-                                    bl_id = cond_true_id if bl_start == cond_true_start else cond_false_id
+                                    if bl_start == cond_true_start:
+                                        bl_id = cond_true_id
+                                    elif bl_start == cond_false_start:
+                                        bl_id = cond_false_id
+                                    elif bl_start == goto_start:
+                                        bl_id = goto_id
                                 if content_exists and 'count' in bl_content.attrib:
                                     bl_count = bl_content.attrib['count']
                                 else:
-                                    bl_count = cond_true_count if bl_start == cond_true_start else cond_false_count
+                                    if bl_start == cond_true_start:
+                                        bl_count = cond_true_count
+                                    elif bl_start == cond_false_start:
+                                        bl_count = cond_false_count
+                                    elif bl_start == goto_start:
+                                        bl_count = goto_count
                                 if content_exists and 'opcode' in bl_content.attrib:
                                     bl_opcode = bl_content.attrib['opcode']
                                 else:
@@ -126,6 +139,7 @@ for package in root:
                                 goto_start = '-'
                                 goto_count = '-'
                                 is_cond = False
+                                is_goto = False
                                 for block_content in method_content:
                                     bl_type = block_content.tag.split("}", 1)[1]
                                     if bl_type in block_types:
@@ -142,7 +156,9 @@ for package in root:
                                             cond_false_count = block_content[1].attrib['count']
                                     else:
                                         if bl_type == 'goto':
+                                            is_goto = True
                                             goto_start = block_content[0].attrib['s']
+                                            goto_id = block_content[0].attrib['id']
                                             goto_count = block_content[0].attrib['count']
                                         else:
                                             if bl_type == 'fall':
@@ -153,7 +169,7 @@ for package in root:
                                              bl_count,
                                              bl_opcode, bl_type, cond_true_start, cond_true_end, cond_true_count,
                                              cond_false_start, cond_false_end, cond_false_count,
-                                             goto_start, goto_count, can_fall_through, is_cond)
+                                             goto_start, goto_count, can_fall_through, is_cond, is_goto)
                             if 'lt' in method_content.tag:
                                 lines = method_content.text.split(';')
                                 del lines[-1]
@@ -175,5 +191,6 @@ for package in root:
                                             lines_index += 1
                                 except Exception:
                                     pass
-
+                                
+table = table.drop(table.index[0])
 table.to_csv('block_table.csv', index=False)
