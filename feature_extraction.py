@@ -1,6 +1,11 @@
 import pandas as pd
 import numpy as np
 
+HC_FUN_AND_BLOCK_LIST = 0
+HC_FUN_LIST = 1
+HC_BLOCK_LIST = 2
+
+
 # table=np.genfromtxt('block_table.csv', dtype=None, delimiter=',')
 data = pd.read_csv('block_table.csv')
 features_table = pd.DataFrame(index=[0],
@@ -9,52 +14,58 @@ features_table = pd.DataFrame(index=[0],
                                        'hc_fun_weighted_avg',
                                        'hc_fun_median', 'hc_fun_std', 'hc_fun_var', 'hc_fun_percentage'])
 
+hit_count_table = {}  # {file_name:  [(fun_hc, [bl_hc_0, bl_hc_1,...,bl_hc_n])], [fun_hc_0, fun_hc_1,...,fun_hc_n], [bl_hc_0, bl_hc_1,...,bl_hc_n] }
+
 
 def create_block_feutures(data):
-    table = {}
+    global hit_count_table
+    last_file_name = None
     last_fun_name = None
-    new_fun = False
-    print('Data collection')
+    print('Collecting data...')
     for index, row in data.iterrows():
         file_name = row['Class_path']
         function_name = row['Method_name']
-        if function_name != last_fun_name:
-            new_fun = True
+        block_hc = int(row['Block_count'])
+        if file_name != last_fun_name:
+            # finished collecting data for a file
+            last_file_name = file_name
+            hit_count_table[file_name] = ([], [], [])
+        if function_name != last_file_name:
+            # finished collecting data for a function
             last_fun_name = function_name
-        hc = int(row['Block_count'])
-        if file_name not in table:
-            table[file_name] = [[hc], [hc]]
-        else:
-            hc_fun_list = list(table.get(file_name)[1])
-            if new_fun:
-                hc_fun_list.append(hc)
-            hc_block_list = list(table.get(file_name)[0])
-            hc_block_list.append(hc)
-            table[file_name] = [hc_block_list, hc_fun_list]
-            new_fun = False
+            func_hc = block_hc
+            hit_count_table[file_name][0].append((func_hc, []))
+            hit_count_table[file_name][1].append(func_hc)
+        hit_count_table[file_name][0][-1][1].append(block_hc)
+        hit_count_table[file_name][2].append(block_hc)
     print('Building the features')
     global features_table
-    for key, value in table.items():
-        hc_block_mean = np.mean(value[0])
-        hc_block_std = np.std(value[0])
-        hc_block_mid = np.median(value[0])
-        hc_block_avg = np.average(value[0])
-        hc_block_var = np.var(value[0])
-        hc_fun_mean = np.mean(value[1])
-        hc_fun_std = np.std(value[1])
-        hc_fun_mid = np.median(value[1])
-        hc_fun_avg = np.average(value[1])
-        hc_fun_var = np.var(value[1])
+    for key, value in hit_count_table.items():
+        hc_block_mean = np.mean(value[HC_BLOCK_LIST])
+        hc_block_std = np.std(value[HC_BLOCK_LIST])
+        hc_block_mid = np.median(value[HC_BLOCK_LIST])
+        hc_block_avg = np.average(value[HC_BLOCK_LIST])
+        hc_block_var = np.var(value[HC_BLOCK_LIST])
+        hc_fun_mean = np.mean(value[HC_FUN_LIST])
+        hc_fun_std = np.std(value[HC_FUN_LIST])
+        hc_fun_mid = np.median(value[HC_FUN_LIST])
+        hc_fun_avg = np.average(value[HC_FUN_LIST])
+        hc_fun_var = np.var(value[HC_FUN_LIST])
         num_hc_fun = None
         num_hc_block = None
-        for i in range(0, value[0].__len__()):
-            if value[0][i] != 0:
+
+        if not all(x < value[HC_FUN_AND_BLOCK_LIST][0] for x in value[HC_FUN_AND_BLOCK_LIST][1]):
+            # There s a loop:
+
+            if value[HC_BLOCK_LIST][i] != 0:
                 num_hc_fun += 1
-        for i in range(0, value[1].__len__()):
-            if value[1][i] != 0:
+        for i in range(0, value[HC_FUN_LIST].__len__()):
+            if value[HC_FUN_LIST][i] != 0:
                 num_hc_block += 1
-        per_hc_block = num_hc_block / value[0].__len__()
-        per_hc_fun = num_hc_fun / value[1].__len__()
+        per_hc_block = num_hc_block / value[HC_BLOCK_LIST].__len__()
+        per_hc_fun = num_hc_fun / value[HC_FUN_LIST].__len__()
+
+        per_fun_with_loop = num_hc_fun / value[HC_FUN_LIST].__len__()
 
         new_line = {'File Name': key,
                     'hc_block_mean': hc_block_mean,
@@ -72,8 +83,5 @@ def create_block_feutures(data):
                     }
         features_table = features_table.append(new_line, ignore_index=True)
 
-    print('keren')
-
 
 create_block_feutures(data)
-print('keren')
