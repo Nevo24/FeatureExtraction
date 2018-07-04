@@ -38,6 +38,7 @@ def add_to_table(class_path, method_name, meth_len, meth_access, bl_id, bl_start
                  cond_true_start, cond_true_end, cond_true_count, cond_false_start, cond_false_end,
                  cond_false_count, goto_start, goto_count, can_fall_through, is_cond, is_goto):
     global table
+    class_path = class_path + '.java'
     if not is_cond:
         cond_true_start = '-'
         cond_true_end = '-'
@@ -79,7 +80,7 @@ for package in root:
     if 'head' in package.tag:
         continue
     class_path = package.attrib['name'] + '.'
-    class_path = class_path.replace(".", "\\")
+    class_path = class_path.replace(".", "/")
     if 'package' in package.tag:
         for projectClass in package:
             class_path += projectClass.attrib['name']
