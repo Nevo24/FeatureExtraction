@@ -1,5 +1,8 @@
 import xml.etree.ElementTree as ET
+
 import pandas as pd
+
+file_name = '1_8_rc2_jcov.xml'
 
 CLASS_PATH = 0
 METHOD_NAME = 1
@@ -69,7 +72,7 @@ def add_to_table(class_path, method_name, meth_len, meth_access, bl_id, bl_start
     table = table.append(new_line, ignore_index=True)
 
 
-tree = ET.parse('.\\jcov_hive\\result.xml')
+tree = ET.parse('.\\jcov_hive\\{}'.format(file_name))
 root = tree.getroot()
 
 for package in root:
@@ -140,6 +143,7 @@ for package in root:
                                 goto_count = '-'
                                 is_cond = False
                                 is_goto = False
+                                bl_type = '-'
                                 for block_content in method_content:
                                     bl_type = block_content.tag.split("}", 1)[1]
                                     if bl_type in block_types:
@@ -166,9 +170,8 @@ for package in root:
                                             bl_type = '-'
                                 num_of_blocks += 1
                                 add_to_table(class_path, method_name, meth_len, meth_access, bl_id, bl_start, bl_end,
-                                             bl_count,
-                                             bl_opcode, bl_type, cond_true_start, cond_true_end, cond_true_count,
-                                             cond_false_start, cond_false_end, cond_false_count,
+                                             bl_count, bl_opcode, bl_type, cond_true_start, cond_true_end,
+                                             cond_true_count, cond_false_start, cond_false_end, cond_false_count,
                                              goto_start, goto_count, can_fall_through, is_cond, is_goto)
                             if 'lt' in method_content.tag:
                                 lines = method_content.text.split(';')
@@ -191,6 +194,6 @@ for package in root:
                                             lines_index += 1
                                 except Exception:
                                     pass
-                                
+
 table = table.drop(table.index[0])
 table.to_csv('block_table.csv', index=False)
