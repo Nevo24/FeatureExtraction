@@ -38,7 +38,6 @@ def add_to_table(class_path, method_name, meth_len, meth_access, bl_id, bl_start
                  cond_true_start, cond_true_end, cond_true_count, cond_false_start, cond_false_end,
                  cond_false_count, goto_start, goto_count, can_fall_through, is_cond, is_goto):
     global table
-    class_path = class_path + '.java'
     if not is_cond:
         cond_true_start = '-'
         cond_true_end = '-'
@@ -83,9 +82,9 @@ for package in root:
     class_path = class_path.replace(".", "/")
     if 'package' in package.tag:
         for projectClass in package:
-            class_path += projectClass.attrib['name']
+            current_class_path = class_path + projectClass.attrib['source']
             first_iter = False
-            print(class_path)
+            print(current_class_path)
             if 'class' in projectClass.tag:
                 for method in projectClass:
                     method_name = method.attrib['name']
@@ -170,8 +169,8 @@ for package in root:
                                                 can_fall_through = 'yes'
                                             bl_type = '-'
                                 num_of_blocks += 1
-                                add_to_table(class_path, method_name, meth_len, meth_access, bl_id, bl_start, bl_end,
-                                             bl_count, bl_opcode, bl_type, cond_true_start, cond_true_end,
+                                add_to_table(current_class_path, method_name, meth_len, meth_access, bl_id, bl_start,
+                                             bl_end, bl_count, bl_opcode, bl_type, cond_true_start, cond_true_end,
                                              cond_true_count, cond_false_start, cond_false_end, cond_false_count,
                                              goto_start, goto_count, can_fall_through, is_cond, is_goto)
                             if 'lt' in method_content.tag:
