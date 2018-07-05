@@ -15,22 +15,16 @@ def create_bl_hc_list(bl_type, bl_hc_list, bl_type_list):
             ans.append(bl_hc_list[i])
     return ans
 
-
-# table=np.genfromtxt('block_table.csv', dtype=None, delimiter=',')
-data = pd.read_csv('block_table.csv')
-features_table = pd.DataFrame(index=[0],
-                              columns=['File Name', 'Hc_block_mean', 'Hc_block_median',
-                                       'Hc_block_std', 'Hc_block_var', 'Cond_hc_block_mean', 'Cond_hc_block_std',
-                                       'Cond_hc_block_median', 'Cond_hc_block_var', 'Goto_hc_block_mean',
-                                       'Goto_hc_block_std', 'Goto_hc_block_median', 'Goto_hc_block_var', 'Hc_fun_mean',
-                                       'Hc_fun_median', 'Hc_fun_std', 'Hc_fun_var',
-                                       'Per_blocks_in_loop', 'Cond_block_num', 'Goto_block_num'])
-
-hit_count_table = {}  # {file_name:  [(fun_hc, [bl_hc_0, bl_hc_1,...,bl_hc_n])], [fun_hc_0, fun_hc_1,...,fun_hc_n], [bl_hc_0, bl_hc_1,...,bl_hc_n], [bl_type_0, bl_type_1, bl_type_2,..., bl_type_n] }
-
-
 def create_block_feutures(data):
-    global hit_count_table
+    features_table = pd.DataFrame(index=[0],
+                                  columns=['File Name', 'Hc_block_mean', 'Hc_block_median',
+                                           'Hc_block_std', 'Hc_block_var', 'Cond_hc_block_mean', 'Cond_hc_block_std',
+                                           'Cond_hc_block_median', 'Cond_hc_block_var', 'Goto_hc_block_mean',
+                                           'Goto_hc_block_std', 'Goto_hc_block_median', 'Goto_hc_block_var', 'Hc_fun_mean',
+                                           'Hc_fun_median', 'Hc_fun_std', 'Hc_fun_var',
+                                           'Per_blocks_in_loop', 'Cond_block_num', 'Goto_block_num'])
+
+    hit_count_table = {}  # {file_name:  [(fun_hc, [bl_hc_0, bl_hc_1,...,bl_hc_n])], [fun_hc_0, fun_hc_1,...,fun_hc_n], [bl_hc_0, bl_hc_1,...,bl_hc_n], [bl_type_0, bl_type_1, bl_type_2,..., bl_type_n] }
     last_file_name = None
     last_fun_name = None
     print('Collecting data...')
@@ -55,7 +49,6 @@ def create_block_feutures(data):
         hit_count_table[file_name][HC_BLOCK_LIST].append(block_hc)
         hit_count_table[file_name][TYPE_BLOCK_LIST].append(block_type)
     print('Building the features...')
-    global features_table
     for file_name, value in hit_count_table.items():
         num_of_blocks_in_file = value[HC_BLOCK_LIST].__len__()
         per_blocks_in_loop = 0
@@ -135,8 +128,15 @@ def create_block_feutures(data):
                     'Goto_block_num': goto_block_num
                     }
         features_table = features_table.append(new_line, ignore_index=True)
+    return features_table
 
 
-create_block_feutures(data)
-features_table = features_table.drop(features_table.index[0])
-features_table.to_csv('features_table.csv', index=False)
+def get_feature_extraction(data,from_csv,file_name):
+    if from_csv:
+        table_name = 'block_table_' + file_name + '.csv'
+        data = pd.read_csv(table_name)
+    features_table = create_block_feutures(data)
+    features_table = features_table.drop(features_table.index[0])
+    table_name = 'features_table_' + file_name + '.csv'
+    features_table.to_csv(table_name, index=False)
+    return features_table
