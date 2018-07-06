@@ -27,6 +27,7 @@ def create_block_feutures(data):
     hit_count_table = {}  # {file_name:  [(fun_hc, [bl_hc_0, bl_hc_1,...,bl_hc_n])], [fun_hc_0, fun_hc_1,...,fun_hc_n], [bl_hc_0, bl_hc_1,...,bl_hc_n], [bl_type_0, bl_type_1, bl_type_2,..., bl_type_n] }
     last_file_name = None
     last_fun_name = None
+    count = 0
     print('Collecting data...')
     for index, row in data.iterrows():
         new_file = False
@@ -39,6 +40,7 @@ def create_block_feutures(data):
             new_file = True
             last_file_name = file_name
             hit_count_table[file_name] = ([], [], [], [])
+            count = count+1
         if new_file or function_name != last_fun_name:
             # finished collecting data for a function
             last_fun_name = function_name
@@ -128,6 +130,7 @@ def create_block_feutures(data):
                     'Goto_block_num': goto_block_num
                     }
         features_table = features_table.append(new_line, ignore_index=True)
+    print(count)
     return features_table
 
 
