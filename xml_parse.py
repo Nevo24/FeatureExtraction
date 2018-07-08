@@ -5,7 +5,7 @@ import pandas as pd
 
 def add_to_table(class_path, method_name, meth_len, meth_access, bl_id, bl_start, bl_end, bl_count, bl_opcode, bl_type,
                  cond_true_start, cond_true_end, cond_true_count, cond_false_start, cond_false_end,
-                 cond_false_count, goto_start, goto_count, can_fall_through, is_cond, is_goto,table):
+                 cond_false_count, goto_start, goto_count, can_fall_through, is_cond, is_goto, table):
     if not is_cond:
         cond_true_start = '-'
         cond_true_end = '-'
@@ -40,8 +40,14 @@ def add_to_table(class_path, method_name, meth_len, meth_access, bl_id, bl_start
     table = table.append(new_line, ignore_index=True)
     return table
 
-def parsing_xml(file_name):
-    CLASS_PATH = 0 ; METHOD_NAME = 1
+
+def parsing_xml(file_name, perform_new_parse=True):
+    table_name = 'block_table_' + file_name + '.csv'
+    if not perform_new_parse:
+        return pd.read_csv(table_name)
+
+    CLASS_PATH = 0
+    METHOD_NAME = 1
     METHOD_LEN = 2
     METHOD_ACCESS = 3
     BLOCK_ID = 4
@@ -59,7 +65,6 @@ def parsing_xml(file_name):
     GOTO_START = 16
     GOTO_COUNT = 17
     LINE_IN_FILE = 18
-    CAN_FALL_THROUGH = 19
 
     table = pd.DataFrame(index=[0],
                          columns=['Class_path', 'Method_name', 'Method_len', 'Method_access', 'Block_id', 'Block_start',
@@ -80,7 +85,7 @@ def parsing_xml(file_name):
         if 'package' in package.tag:
             for projectClass in package:
                 current_class_path = class_path + projectClass.attrib['source']
-                first_iter = False
+                print(current_class_path)
                 if 'class' in projectClass.tag:
                     for method in projectClass:
                         method_name = method.attrib['name']
@@ -165,14 +170,17 @@ def parsing_xml(file_name):
                                                     can_fall_through = 'yes'
                                                 bl_type = '-'
                                     num_of_blocks += 1
-                                    table = add_to_table(current_class_path, method_name, meth_len, meth_access, bl_id, bl_start,
-                                                 bl_end, bl_count, bl_opcode, bl_type, cond_true_start, cond_true_end,
-                                                 cond_true_count, cond_false_start, cond_false_end, cond_false_count,
-                                                 goto_start, goto_count, can_fall_through, is_cond, is_goto,table)
+                                    table = add_to_table(current_class_path, method_name, meth_len, meth_access, bl_id,
+                                                         bl_start,
+                                                         bl_end, bl_count, bl_opcode, bl_type, cond_true_start,
+                                                         cond_true_end,
+                                                         cond_true_count, cond_false_start, cond_false_end,
+                                                         cond_false_count,
+                                                         goto_start, goto_count, can_fall_through, is_cond, is_goto,
+                                                         table)
                                 if 'lt' in method_content.tag:
                                     lines = method_content.text.split(';')
                                     del lines[-1]
-                                    last_modified_row = -num_of_blocks
                                     lines_index = 0
                                     try:
                                         for last_modified_row in range(-num_of_blocks, 0):
@@ -192,6 +200,5 @@ def parsing_xml(file_name):
                                         pass
 
     table = table.drop(table.index[0])
-    table_name = 'block_table_'+file_name+'.csv'
     table.to_csv(table_name, index=False)
     return table

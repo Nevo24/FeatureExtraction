@@ -15,12 +15,18 @@ def create_bl_hc_list(bl_type, bl_hc_list, bl_type_list):
             ans.append(bl_hc_list[i])
     return ans
 
-def create_block_feutures(data):
+
+def create_block_features(file_name, data, perform_new_feature_extraction):
+    table_name = 'features_table_' + file_name + '.csv'
+    if not perform_new_feature_extraction:
+        return pd.read_csv(table_name)
+
     features_table = pd.DataFrame(index=[0],
                                   columns=['File Name', 'Hc_block_mean', 'Hc_block_median',
                                            'Hc_block_std', 'Hc_block_var', 'Cond_hc_block_mean', 'Cond_hc_block_std',
                                            'Cond_hc_block_median', 'Cond_hc_block_var', 'Goto_hc_block_mean',
-                                           'Goto_hc_block_std', 'Goto_hc_block_median', 'Goto_hc_block_var', 'Hc_fun_mean',
+                                           'Goto_hc_block_std', 'Goto_hc_block_median', 'Goto_hc_block_var',
+                                           'Hc_fun_mean',
                                            'Hc_fun_median', 'Hc_fun_std', 'Hc_fun_var',
                                            'Per_blocks_in_loop', 'Cond_block_num', 'Goto_block_num'])
 
@@ -40,7 +46,7 @@ def create_block_feutures(data):
             new_file = True
             last_file_name = file_name
             hit_count_table[file_name] = ([], [], [], [])
-            count = count+1
+            count = count + 1
         if new_file or function_name != last_fun_name:
             # finished collecting data for a function
             last_fun_name = function_name
@@ -130,16 +136,6 @@ def create_block_feutures(data):
                     'Goto_block_num': goto_block_num
                     }
         features_table = features_table.append(new_line, ignore_index=True)
-    print(count)
-    return features_table
-
-
-def get_feature_extraction(data,from_csv,file_name):
-    if from_csv:
-        table_name = 'block_table_' + file_name + '.csv'
-        data = pd.read_csv(table_name)
-    features_table = create_block_feutures(data)
     features_table = features_table.drop(features_table.index[0])
-    table_name = 'features_table_' + file_name + '.csv'
     features_table.to_csv(table_name, index=False)
     return features_table
