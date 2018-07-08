@@ -22,11 +22,11 @@ def create_block_features(file_name, data, perform_new_feature_extraction):
         return pd.read_csv(table_name)
 
     features_table = pd.DataFrame(index=[0],
-                                  columns=['File Name', 'Hc_block_mean', 'Hc_block_median',
-                                           'Hc_block_std', 'Hc_block_var', 'Cond_hc_block_mean', 'Cond_hc_block_std',
+                                  columns=['File Name', 'Hc_block_mean', 'Hc_block_std',
+                                           'Hc_block_median', 'Hc_block_var', 'Cond_hc_block_mean', 'Cond_hc_block_std',
                                            'Cond_hc_block_median', 'Cond_hc_block_var', 'Goto_hc_block_mean',
                                            'Goto_hc_block_std', 'Goto_hc_block_median', 'Goto_hc_block_var',
-                                           'Hc_fun_mean', 'Hc_fun_median', 'Hc_fun_std', 'Hc_fun_var',
+                                           'Hc_fun_mean', 'Hc_fun_std', 'Hc_fun_median', 'Hc_fun_var',
                                            'Per_blocks_in_loop', 'Cond_per_blocks_in_loop',
                                            'Goto_per_blocks_in_loop', 'Cond_block_num', 'Goto_block_num'])
 
