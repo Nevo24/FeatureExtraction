@@ -26,9 +26,9 @@ def create_block_features(file_name, data, perform_new_feature_extraction):
                                            'Hc_block_std', 'Hc_block_var', 'Cond_hc_block_mean', 'Cond_hc_block_std',
                                            'Cond_hc_block_median', 'Cond_hc_block_var', 'Goto_hc_block_mean',
                                            'Goto_hc_block_std', 'Goto_hc_block_median', 'Goto_hc_block_var',
-                                           'Hc_fun_mean',
-                                           'Hc_fun_median', 'Hc_fun_std', 'Hc_fun_var',
-                                           'Per_blocks_in_loop', 'Cond_block_num', 'Goto_block_num'])
+                                           'Hc_fun_mean', 'Hc_fun_median', 'Hc_fun_std', 'Hc_fun_var',
+                                           'Per_blocks_in_loop', 'Cond_per_blocks_in_loop',
+                                           'Goto_per_blocks_in_loop', 'Cond_block_num', 'Goto_block_num'])
 
     hit_count_table = {}  # {file_name:  [(fun_hc, [bl_hc_0, bl_hc_1,...,bl_hc_n])], [fun_hc_0, fun_hc_1,...,fun_hc_n], [bl_hc_0, bl_hc_1,...,bl_hc_n], [bl_type_0, bl_type_1, bl_type_2,..., bl_type_n] }
     last_file_name = None
@@ -60,6 +60,8 @@ def create_block_features(file_name, data, perform_new_feature_extraction):
     for file_name, value in hit_count_table.items():
         num_of_blocks_in_file = value[HC_BLOCK_LIST].__len__()
         per_blocks_in_loop = 0
+        cond_per_blocks_in_loop = 0
+        goto_per_blocks_in_loop = 0
 
         hc_block_mean = np.mean(value[HC_BLOCK_LIST])
         hc_block_std = np.std(value[HC_BLOCK_LIST])
@@ -95,13 +97,29 @@ def create_block_features(file_name, data, perform_new_feature_extraction):
         hc_fun_mid = np.median(value[HC_FUN_LIST])
         hc_fun_var = np.var(value[HC_FUN_LIST])
 
+        type_block_list_index = 0
+        cond_block_num = 0
+        goto_block_num = 0
         for fun_hc, bl_hc_list in value[HC_FUN_AND_BLOCK_LIST]:
             num_blocks_in_a_loop = 0
+            cond_num_blocks_in_a_loop = 0
+            goto_num_blocks_in_a_loop = 0
             for current_bl_hc in bl_hc_list:
                 if current_bl_hc > fun_hc:
                     num_blocks_in_a_loop += 1
+                    if value[TYPE_BLOCK_LIST][type_block_list_index] == 'cond':
+                        cond_block_num += 1
+                        cond_num_blocks_in_a_loop += 1
+                    if value[TYPE_BLOCK_LIST][type_block_list_index] == 'goto':
+                        goto_block_num += 1
+                        goto_num_blocks_in_a_loop += 1
+                type_block_list_index += 1
             per_blocks_in_loop += num_blocks_in_a_loop
+            cond_per_blocks_in_loop += cond_num_blocks_in_a_loop
+            goto_per_blocks_in_loop += goto_num_blocks_in_a_loop
         per_blocks_in_loop = per_blocks_in_loop / num_of_blocks_in_file
+        cond_per_blocks_in_loop = cond_per_blocks_in_loop / num_of_blocks_in_file
+        goto_per_blocks_in_loop = goto_per_blocks_in_loop / num_of_blocks_in_file
 
         cond_block_num = 0
         goto_block_num = 0
@@ -131,7 +149,11 @@ def create_block_features(file_name, data, perform_new_feature_extraction):
                     'Hc_fun_std': hc_fun_std,
                     'Hc_fun_median': hc_fun_mid,
                     'Hc_fun_var': hc_fun_var,
+
                     'Per_blocks_in_loop': per_blocks_in_loop,
+                    'Cond_per_blocks_in_loop': cond_per_blocks_in_loop,
+                    'Goto_per_blocks_in_loop': goto_per_blocks_in_loop,
+
                     'Cond_block_num': cond_block_num,
                     'Goto_block_num': goto_block_num
                     }
