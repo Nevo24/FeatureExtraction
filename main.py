@@ -1,15 +1,13 @@
 import argparse
-
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import precision_score, accuracy_score, recall_score, roc_auc_score
-
 import feature_extraction
 import parse_results
 import xml_parse
 
 train_files = ['1_7_jcov.xml', '1_7_rc2_jcov.xml', '1_8_jcov.xml']
-test_file = '1_8_rc2_jcov.xml'
+test_files = ['1_8_rc2_jcov.xml']
 dic_versions = {'1_7_jcov.xml': '1.7', '1_7_rc2_jcov.xml': '1.7-rc2',
                 '1_8_jcov.xml': '1.8', '1_8_rc2_jcov.xml': '1.8-rc2'}
 
@@ -30,40 +28,31 @@ FEATURE_EXTRACTION = str2bool(args.feature_extraction)
 CLASSIFIED_DATA = str2bool(args.classified_data)
 
 
-def prepar_training_data(train_files, bugged_paths, dic_versions):
+def prepar_data(training,versions_array, bugged_paths, dic_versions):
     if not CLASSIFIED_DATA:
-        return pd.read_csv('data_train.csv')
-    data_train = []
-    for file_name in train_files:
+        if training:
+            return pd.read_csv('data_train.csv')
+        else:
+            return pd.read_csv('data_test.csv')
+
+    processed_data = []
+    for version in versions_array:
         # call xml_parse
-        parsing = xml_parse.parsing_xml(file_name, PARSING)
+        parsing = xml_parse.parsing_xml(version, PARSING)
         # call feature_extraction and get the table
-        features = feature_extraction.create_block_features(file_name, parsing, FEATURE_EXTRACTION)
+        features = feature_extraction.create_block_features(version, parsing, FEATURE_EXTRACTION)
         features['class'] = 0
-        for path in bugged_paths[dic_versions[file_name]]:
+        for path in bugged_paths[dic_versions[version]]:
             features.loc[features['File Name'] == path, 'class'] = 1
         a = features['class'].value_counts()
-        data_train.append(features)
+        processed_data.append(features)
 
-    result = pd.concat(data_train)
-    result.to_csv('data_train.csv', index=False)  # 2845 samples
+    result = pd.concat(processed_data)
+    if training:
+        result.to_csv('data_train.csv', index=False)  # 2845 samples
+    else:
+        result.to_csv('data_test.csv', index=False)  # 573 samples
     return result
-
-
-def prepar_testing_data(test_file, bugged_paths, dic_versions):
-    if not CLASSIFIED_DATA:
-        return pd.read_csv('data_test.csv')
-    # call xml_parse
-    parsing = xml_parse.parsing_xml(test_file, PARSING)
-    # call feature_extraction and get the table
-    features = feature_extraction.create_block_features(test_file, parsing, FEATURE_EXTRACTION)
-    features['class'] = 0
-    for path in bugged_paths[dic_versions[test_file]]:
-        features.loc[features['File Name'] == path, 'class'] = 1
-    a = features['class'].value_counts()
-
-    features.to_csv('data_test.csv', index=False)  # 573 samples
-    return features
 
 
 def build_model(x_train, y_train, x_test, y_test):
@@ -86,8 +75,10 @@ def build_model(x_train, y_train, x_test, y_test):
 
 
 bugged_paths = parse_results.get_bugged_files()
-train_data = prepar_training_data(train_files, bugged_paths, dic_versions)
-test_data = prepar_testing_data(test_file, bugged_paths, dic_versions)
+train_data = prepar_data( training=True, versions_array=train_files,
+                          bugged_paths=bugged_paths, dic_versions=dic_versions)
+test_data = prepar_data( training=False, versions_array=test_files,
+                         bugged_paths=bugged_paths, dic_versions= dic_versions)
 
 train_data.drop("File Name", axis=1, inplace=True)
 test_data.drop("File Name", axis=1, inplace=True)
