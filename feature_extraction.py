@@ -14,8 +14,11 @@ def create_filtered_list(filt, source_list, factor_list):
     ans = []
     lists_len = source_list.__len__()
     for i in range(lists_len):
-        if filt in factor_list[i]:
-            ans.append(source_list[i])
+        try:
+            if filt in factor_list[i]:
+                ans.append(source_list[i])
+        except Exception:
+            pass
     return ans
 
 
@@ -67,11 +70,11 @@ def create_block_features(file_name, data, perform_new_feature_extraction):
                                            'Private_hc_fun_per_zero', 'Protected_hc_fun_mean', 'Protected_hc_fun_std',
                                            'Protected_hc_fun_mid', 'Protected_hc_fun_var', 'Protected_hc_fun_min',
                                            'Protected_hc_fun_max', 'Protected_hc_fun_unique',
-                                           'Protected_hc_fun_per_zero', 'Fun_len_weight_hc_block_mean',
-                                           'Fun_len_weight_hc_block_std', 'Fun_len_weight_hc_block_mid',
-                                           'Fun_len_weight_hc_block_var', 'Fun_len_weight_hc_block_min',
-                                           'Fun_len_weight_hc_block_max', 'Fun_len_weight_hc_block_unique',
-                                           'Fun_len_weight_hc_block_per_zero', 'Num_of_bl_weight_hc_fun_mean',
+                                           'Protected_hc_fun_per_zero', 'Fun_len_weight_hc_fun_mean',
+                                           'Fun_len_weight_hc_fun_std', 'Fun_len_weight_hc_fun_mid',
+                                           'Fun_len_weight_hc_fun_var', 'Fun_len_weight_hc_fun_min',
+                                           'Fun_len_weight_hc_fun_max', 'Fun_len_weight_hc_fun_unique',
+                                           'Fun_len_weight_hc_fun_per_zero', 'Num_of_bl_weight_hc_fun_mean',
                                            'Num_of_bl_weight_hc_fun_std', 'Num_of_bl_weight_hc_fun_mid',
                                            'Num_of_bl_weight_hc_fun_var', 'Num_of_bl_weight_hc_fun_min',
                                            'Num_of_bl_weight_hc_fun_max', 'Num_of_bl_weight_hc_fun_unique',
@@ -90,7 +93,7 @@ def create_block_features(file_name, data, perform_new_feature_extraction):
         function_name = row['Method_name']
         block_hc = int(row['Block_count'])
         block_type = row['Block_type']
-        block_length = row['Block_end'] - row['Block_start'] + 1
+        block_length = int(row['Block_end']) - int(row['Block_start']) + 1
         if file_name != last_file_name:
             # finished collecting data for a file
             new_file = True
@@ -103,7 +106,7 @@ def create_block_features(file_name, data, perform_new_feature_extraction):
             func_hc = block_hc
             hit_count_table[file_name][HC_FUN_AND_BLOCK_LIST].append((func_hc, []))
             hit_count_table[file_name][HC_FUN_LIST].append(func_hc)
-            hit_count_table[file_name][LENGTH_FUN_LIST].append(row['Method_len'])
+            hit_count_table[file_name][LENGTH_FUN_LIST].append(int(row['Method_len']))
             hit_count_table[file_name][FLAG_FUN_LIST].append(row['Method_flags'])
         hit_count_table[file_name][HC_FUN_AND_BLOCK_LIST][-1][1].append(block_hc)
         hit_count_table[file_name][HC_BLOCK_LIST].append(block_hc)
@@ -376,7 +379,8 @@ def create_block_features(file_name, data, perform_new_feature_extraction):
 
         max_fun_len = max(value[LENGTH_FUN_LIST])
         if max_fun_len != 0:
-            fun_len_weight_bl_hc_list = [a * b / hc_fun_max for a, b in zip(value[HC_FUN_LIST], value[LENGTH_FUN_LIST])]
+            fun_len_weight_bl_hc_list = [a * b / max_fun_len for a, b in
+                                         zip(value[HC_FUN_LIST], value[LENGTH_FUN_LIST])]
             fun_len_weight_hc_fun_mean = np.mean(fun_len_weight_bl_hc_list)
             fun_len_weight_hc_fun_std = np.std(fun_len_weight_bl_hc_list)
             fun_len_weight_hc_fun_mid = np.median(fun_len_weight_bl_hc_list)
@@ -397,7 +401,7 @@ def create_block_features(file_name, data, perform_new_feature_extraction):
 
         fun_num_of_bl_list = []
         for hc_fun_and_block in value[HC_FUN_AND_BLOCK_LIST]:
-            fun_num_of_bl_list.extend(hc_fun_and_block[1].__len__())
+            fun_num_of_bl_list.extend(hc_fun_and_block[1])
         max_num_of_bl = max(fun_num_of_bl_list)
 
         if max_num_of_bl != 0:
