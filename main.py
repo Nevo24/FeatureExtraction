@@ -19,21 +19,21 @@ def str2bool(v):
 parser = argparse.ArgumentParser()
 parser.add_argument('--parsing', type=str, default="yes")
 parser.add_argument('--feature_extraction', type=str, default="yes")
-parser.add_argument('--classified_data', type=str, default="yes")
+parser.add_argument('--processed_data', type=str, default="yes")
 args = parser.parse_args()
 
 # When not equal to zero -  mock modules will be generated
 PARSING = str2bool(args.parsing)
 FEATURE_EXTRACTION = str2bool(args.feature_extraction)
-CLASSIFIED_DATA = str2bool(args.classified_data)
+PROCESSED_DATA = str2bool(args.processed_data)
 
 
-def prepar_data(training,versions_array, bugged_paths, dic_versions):
-    if not CLASSIFIED_DATA:
+def prepare_data(training,versions_array, bugged_paths, dic_versions):
+    if PROCESSED_DATA:
         if training:
-            return pd.read_csv('data_train.csv')
+            return pd.read_csv('temporaryFiles/data_train.csv')
         else:
-            return pd.read_csv('data_test.csv')
+            return pd.read_csv('temporaryFiles/data_test.csv')
 
     processed_data = []
     for version in versions_array:
@@ -44,14 +44,13 @@ def prepar_data(training,versions_array, bugged_paths, dic_versions):
         features['class'] = 0
         for path in bugged_paths[dic_versions[version]]:
             features.loc[features['File Name'] == path, 'class'] = 1
-        a = features['class'].value_counts()
         processed_data.append(features)
 
     result = pd.concat(processed_data)
     if training:
-        result.to_csv('data_train.csv', index=False)  # 2845 samples
+        result.to_csv('temporaryFiles/data_train.csv', index=False)  # 2845 samples
     else:
-        result.to_csv('data_test.csv', index=False)  # 573 samples
+        result.to_csv('temporaryFiles/data_test.csv', index=False)  # 573 samples
     return result
 
 
@@ -67,7 +66,7 @@ def build_model(x_train, y_train, x_test, y_test):
     auc = roc_auc_score(y_test, y_pred)
 
     # print the results
-    print("Results:\n")
+    print("\n* * * * * Results * * * * *\n")
     print("Accuracy Score: " + str(acc) + "\n")
     print("roc_auc_score: " + str(auc) + "\n")
     print("Precision: " + str(precision) + "\n")
@@ -75,9 +74,9 @@ def build_model(x_train, y_train, x_test, y_test):
 
 
 bugged_paths = parse_results.get_bugged_files()
-train_data = prepar_data( training=True, versions_array=train_files,
+train_data = prepare_data(training=True, versions_array=train_files,
                           bugged_paths=bugged_paths, dic_versions=dic_versions)
-test_data = prepar_data( training=False, versions_array=test_files,
+test_data = prepare_data(training=False, versions_array=test_files,
                          bugged_paths=bugged_paths, dic_versions= dic_versions)
 
 train_data.drop("File Name", axis=1, inplace=True)

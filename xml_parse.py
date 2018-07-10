@@ -42,8 +42,9 @@ def add_to_table(class_path, method_name, meth_len, is_constructor, method_flags
     return table
 
 
-def parsing_xml(file_name, perform_new_parse=True):
-    table_name = 'block_table_' + file_name + '.csv'
+def parsing_xml(version_name, perform_new_parse=True):
+    print('Parsing '+version_name)
+    table_name = 'temporaryFiles/parsing_table_' + version_name + '.csv'
     if not perform_new_parse:
         return pd.read_csv(table_name)
 
@@ -75,7 +76,7 @@ def parsing_xml(file_name, perform_new_parse=True):
 
     block_types = {'exit', 'methenter', 'br'}
 
-    tree = ET.parse('.\\jcov_hive\\{}'.format(file_name))
+    tree = ET.parse('.\\jcov_hive\\{}'.format(version_name))
     root = tree.getroot()
 
     for package in root:

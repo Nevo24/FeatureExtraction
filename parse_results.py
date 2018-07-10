@@ -2,7 +2,7 @@ import pandas as pd
 
 
 def get_bugged_files():
-    data = pd.read_csv('tables/tika_bugged_files.csv')
+    data = pd.read_csv('buggedFiles/tika_bugged_files.csv')
     files_per_version = {}
 
     for index, row in data.iterrows():

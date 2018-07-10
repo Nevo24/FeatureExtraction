@@ -31,8 +31,9 @@ def create_inner_bl_hc_list(bl_hc_list, bl_type_list):
     return ans
 
 
-def create_block_features(file_name, data, perform_new_feature_extraction):
-    table_name = 'features_table_' + file_name + '.csv'
+def create_block_features(version_name, data, perform_new_feature_extraction):
+    print('Feature Extraction for '+version_name)
+    table_name = 'temporaryFiles/features_table_' + version_name + '.csv'
     if not perform_new_feature_extraction:
         return pd.read_csv(table_name)
 
@@ -86,7 +87,9 @@ def create_block_features(file_name, data, perform_new_feature_extraction):
     last_file_name = None
     last_fun_name = None
     count = 0
-    print('Collecting data...')
+
+    print('Collecting data for '+version_name)
+    #region Collecting data
     for index, row in data.iterrows():
         new_file = False
         file_name = row['Class_path']
@@ -112,7 +115,10 @@ def create_block_features(file_name, data, perform_new_feature_extraction):
         hit_count_table[file_name][HC_BLOCK_LIST].append(block_hc)
         hit_count_table[file_name][TYPE_BLOCK_LIST].append(block_type)
         hit_count_table[file_name][LENGTH_BLOCK_LIST].append(block_length)
-    print('Building the features...')
+    #endregion
+
+    print('Building the features for '+version_name)
+    #region Building features
     for file_name, value in hit_count_table.items():
         num_of_blocks_in_file = value[HC_BLOCK_LIST].__len__()
         num_of_funcs_in_file = value[HC_FUN_LIST].__len__()
@@ -559,6 +565,8 @@ def create_block_features(file_name, data, perform_new_feature_extraction):
                     'Exit_per_blocks_in_loop': exit_per_blocks_in_loop,
                     }
         features_table = features_table.append(new_line, ignore_index=True)
+    #endregion
+
     features_table = features_table.drop(features_table.index[0])
     features_table.to_csv(table_name, index=False)
     return features_table
