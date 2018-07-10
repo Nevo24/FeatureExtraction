@@ -3,8 +3,8 @@ import xml.etree.ElementTree as ET
 import pandas as pd
 
 
-def add_to_table(class_path, method_name, meth_len, meth_access, bl_id, bl_start, bl_end, bl_count, bl_opcode, bl_type,
-                 cond_true_start, cond_true_end, cond_true_count, cond_false_start, cond_false_end,
+def add_to_table(class_path, method_name, meth_len, is_constructor, method_flags, bl_id, bl_start, bl_end, bl_count,
+                 bl_opcode, bl_type, cond_true_start, cond_true_end, cond_true_count, cond_false_start, cond_false_end,
                  cond_false_count, goto_start, goto_count, can_fall_through, is_cond, is_goto, table):
     if not is_cond:
         cond_true_start = '-'
@@ -19,7 +19,8 @@ def add_to_table(class_path, method_name, meth_len, meth_access, bl_id, bl_start
     new_line = {'Class_path': class_path,
                 'Method_name': method_name,
                 'Method_len': meth_len,
-                'Method_access': meth_access,
+                'Is_constructor': is_constructor,
+                'Method_flags': method_flags,
                 'Block_id': bl_id,
                 'Block_start': bl_start,
                 'Block_end': bl_end,
@@ -49,7 +50,7 @@ def parsing_xml(file_name, perform_new_parse=True):
     CLASS_PATH = 0
     METHOD_NAME = 1
     METHOD_LEN = 2
-    METHOD_ACCESS = 3
+    METHOD_FLAGS = 3
     BLOCK_ID = 4
     BLOCK_START = 5
     BLOCK_END = 6
@@ -67,7 +68,7 @@ def parsing_xml(file_name, perform_new_parse=True):
     LINE_IN_FILE = 18
 
     table = pd.DataFrame(index=[0],
-                         columns=['Class_path', 'Method_name', 'Method_len', 'Method_access', 'Block_id', 'Block_start',
+                         columns=['Class_path', 'Method_name', 'Method_len', 'Method_flags', 'Block_id', 'Block_start',
                                   'Block_end', 'Block_count', 'Block_opcode', 'Block_type', 'Cond_true_start',
                                   'Cond_true_end', 'Cond_true_count', 'Cond_false_start', 'Cond_false_end',
                                   'Cond_false_count', 'Goto_start', 'Goto_count', 'Line_in_file', 'Can_fall_through'])
@@ -94,7 +95,11 @@ def parsing_xml(file_name, perform_new_parse=True):
                                 meth_len = method.attrib['length']
                             else:
                                 meth_len = '-'
-                            meth_access = method.attrib['access']
+                            if 'cons' in method.attrib:
+                                is_constructor = 'yes'
+                            else:
+                                is_constructor = 'no'
+                            method_flags = method.attrib['flags']
                         if method.__len__() != 0:
                             cond_true_start = '-'
                             cond_true_end = '-'
@@ -170,14 +175,11 @@ def parsing_xml(file_name, perform_new_parse=True):
                                                     can_fall_through = 'yes'
                                                 bl_type = '-'
                                     num_of_blocks += 1
-                                    table = add_to_table(current_class_path, method_name, meth_len, meth_access, bl_id,
-                                                         bl_start,
-                                                         bl_end, bl_count, bl_opcode, bl_type, cond_true_start,
-                                                         cond_true_end,
-                                                         cond_true_count, cond_false_start, cond_false_end,
-                                                         cond_false_count,
-                                                         goto_start, goto_count, can_fall_through, is_cond, is_goto,
-                                                         table)
+                                    table = add_to_table(current_class_path, method_name, meth_len, is_constructor,
+                                                         method_flags, bl_id, bl_start, bl_end, bl_count, bl_opcode,
+                                                         bl_type, cond_true_start, cond_true_end, cond_true_count,
+                                                         cond_false_start, cond_false_end, cond_false_count, goto_start,
+                                                         goto_count, can_fall_through, is_cond, is_goto, table)
                                 if 'lt' in method_content.tag:
                                     lines = method_content.text.split(';')
                                     del lines[-1]
