@@ -6,10 +6,10 @@ import feature_extraction
 import parse_results
 import xml_parse
 
-train_files = ['1_7_jcov.xml', '1_7_rc2_jcov.xml', '1_8_jcov.xml']
-test_files = ['1_8_rc2_jcov.xml']
-dic_versions = {'1_7_jcov.xml': '1.7', '1_7_rc2_jcov.xml': '1.7-rc2',
-                '1_8_jcov.xml': '1.8', '1_8_rc2_jcov.xml': '1.8-rc2'}
+train_files = ['1_7_jcov', '1_7_rc2_jcov', '1_8_jcov']
+test_files = ['1_8_rc2_jcov']
+dic_versions = {'1_7_jcov': '1.7', '1_7_rc2_jcov': '1.7-rc2',
+                '1_8_jcov': '1.8', '1_8_rc2_jcov': '1.8-rc2'}
 
 
 def str2bool(v):
@@ -19,17 +19,17 @@ def str2bool(v):
 parser = argparse.ArgumentParser()
 parser.add_argument('--parsing', type=str, default="yes")
 parser.add_argument('--feature_extraction', type=str, default="yes")
-parser.add_argument('--processed_data', type=str, default="yes")
+parser.add_argument('--process_data', type=str, default="yes")
 args = parser.parse_args()
 
 # When not equal to zero -  mock modules will be generated
 PARSING = str2bool(args.parsing)
 FEATURE_EXTRACTION = str2bool(args.feature_extraction)
-PROCESSED_DATA = str2bool(args.processed_data)
+PROCESS_DATA = str2bool(args.process_data)
 
 
 def prepare_data(training,versions_array, bugged_paths, dic_versions):
-    if PROCESSED_DATA:
+    if not PROCESS_DATA:
         if training:
             return pd.read_csv('temporaryFiles/data_train.csv')
         else:

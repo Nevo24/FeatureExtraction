@@ -77,7 +77,7 @@ def parsing_xml(version_name, perform_new_parse=True):
 
     block_types = {'exit', 'methenter', 'br'}
 
-    tree = ET.parse('.\\jcov_hive\\{}'.format(version_name))
+    tree = ET.parse('.\\jcov_hive\\{}.xml'.format(version_name))
     root = tree.getroot()
 
     for package in root:
