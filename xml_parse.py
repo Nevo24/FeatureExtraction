@@ -43,7 +43,7 @@ def add_to_table(class_path, method_name, meth_len, is_constructor, method_flags
 
 
 def parsing_xml(version_name, perform_new_parse=True):
-    print('Parsing '+version_name)
+    print('Parsing ' + version_name)
     table_name = 'temporaryFiles/parsing_table_' + version_name + '.csv'
     if not perform_new_parse:
         return pd.read_csv(table_name)
@@ -69,10 +69,11 @@ def parsing_xml(version_name, perform_new_parse=True):
     LINE_IN_FILE = 18
 
     table = pd.DataFrame(index=[0],
-                         columns=['Class_path', 'Method_name', 'Method_len', 'Method_flags', 'Block_id', 'Block_start',
-                                  'Block_end', 'Block_count', 'Block_opcode', 'Block_type', 'Cond_true_start',
-                                  'Cond_true_end', 'Cond_true_count', 'Cond_false_start', 'Cond_false_end',
-                                  'Cond_false_count', 'Goto_start', 'Goto_count', 'Line_in_file', 'Can_fall_through'])
+                         columns=['Class_path', 'Method_name', 'Method_len', 'Is_constructor', 'Method_flags',
+                                  'Block_id', 'Block_start', 'Block_end', 'Block_count', 'Block_opcode', 'Block_type',
+                                  'Cond_true_start', 'Cond_true_end', 'Cond_true_count', 'Cond_false_start',
+                                  'Cond_false_end', 'Cond_false_count', 'Goto_start', 'Goto_count', 'Line_in_file',
+                                  'Can_fall_through'])
 
     block_types = {'exit', 'methenter', 'br'}
 

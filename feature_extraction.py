@@ -8,6 +8,7 @@ TYPE_BLOCK_LIST = 3
 LENGTH_BLOCK_LIST = 4
 LENGTH_FUN_LIST = 5
 FLAG_FUN_LIST = 6
+IS_CONSTRUCTOR_FUN_LIST = 7
 
 
 def create_filtered_list(filt, source_list, factor_list):
@@ -71,19 +72,22 @@ def create_block_features(version_name, data, perform_new_feature_extraction):
                                            'Private_hc_fun_per_zero', 'Protected_hc_fun_mean', 'Protected_hc_fun_std',
                                            'Protected_hc_fun_mid', 'Protected_hc_fun_var', 'Protected_hc_fun_min',
                                            'Protected_hc_fun_max', 'Protected_hc_fun_unique',
-                                           'Protected_hc_fun_per_zero', 'Fun_len_weight_hc_fun_mean',
-                                           'Fun_len_weight_hc_fun_std', 'Fun_len_weight_hc_fun_mid',
-                                           'Fun_len_weight_hc_fun_var', 'Fun_len_weight_hc_fun_min',
-                                           'Fun_len_weight_hc_fun_max', 'Fun_len_weight_hc_fun_unique',
-                                           'Fun_len_weight_hc_fun_per_zero', 'Num_of_bl_weight_hc_fun_mean',
-                                           'Num_of_bl_weight_hc_fun_std', 'Num_of_bl_weight_hc_fun_mid',
-                                           'Num_of_bl_weight_hc_fun_var', 'Num_of_bl_weight_hc_fun_min',
-                                           'Num_of_bl_weight_hc_fun_max', 'Num_of_bl_weight_hc_fun_unique',
-                                           'Num_of_bl_weight_hc_fun_per_zero', 'Per_blocks_in_loop',
-                                           'Cond_per_blocks_in_loop', 'Goto_per_blocks_in_loop',
+                                           'Protected_hc_fun_per_zero', 'Constructor_hc_fun_mean',
+                                           'Constructor_hc_fun_std', 'Constructor_hc_fun_mid', 'Constructor_hc_fun_var',
+                                           'Constructor_hc_fun_min', 'Constructor_hc_fun_max',
+                                           'Constructor_hc_fun_unique', 'Constructor_hc_fun_per_zero',
+                                           'Fun_len_weight_hc_fun_mean', 'Fun_len_weight_hc_fun_std',
+                                           'Fun_len_weight_hc_fun_mid', 'Fun_len_weight_hc_fun_var',
+                                           'Fun_len_weight_hc_fun_min', 'Fun_len_weight_hc_fun_max',
+                                           'Fun_len_weight_hc_fun_unique', 'Fun_len_weight_hc_fun_per_zero',
+                                           'Num_of_bl_weight_hc_fun_mean', 'Num_of_bl_weight_hc_fun_std',
+                                           'Num_of_bl_weight_hc_fun_mid', 'Num_of_bl_weight_hc_fun_var',
+                                           'Num_of_bl_weight_hc_fun_min', 'Num_of_bl_weight_hc_fun_max',
+                                           'Num_of_bl_weight_hc_fun_unique', 'Num_of_bl_weight_hc_fun_per_zero',
+                                           'Per_blocks_in_loop', 'Cond_per_blocks_in_loop', 'Goto_per_blocks_in_loop',
                                            'Methenter_per_blocks_in_loop', 'Exit_per_blocks_in_loop'])
 
-    hit_count_table = {}  # {file_name:  [(fun_hc, [bl_hc_0, bl_hc_1,...,bl_hc_n])], [fun_hc_0, fun_hc_1,...,fun_hc_n], [bl_hc_0, bl_hc_1,...,bl_hc_n], [bl_type_0, bl_type_1, bl_type_2,..., bl_type_n], [bl_length_0, bl_length_1, bl_length_2,..., bl_length_n], [fun_length_0, fun_length_1, fun_length_2,..., fun_length_n],  [fun_flag_0, fun_flag_1, fun_flag_2,..., fun_flag_n]}
+    hit_count_table = {}  # {file_name:  [(fun_hc, [bl_hc_0, bl_hc_1,...,bl_hc_n])], [fun_hc_0, fun_hc_1,...,fun_hc_n], [bl_hc_0, bl_hc_1,...,bl_hc_n], [bl_type_0, bl_type_1, bl_type_2,..., bl_type_n], [bl_length_0, bl_length_1, bl_length_2,..., bl_length_n], [fun_length_0, fun_length_1, fun_length_2,..., fun_length_n],  [fun_flag_0, fun_flag_1, fun_flag_2,..., fun_flag_n], [is_const_0, is_const_1, is_const_2,..., is_const_n]}
     last_file_name = None
     last_fun_name = None
     count = 0
@@ -101,7 +105,7 @@ def create_block_features(version_name, data, perform_new_feature_extraction):
             # finished collecting data for a file
             new_file = True
             last_file_name = file_name
-            hit_count_table[file_name] = ([], [], [], [], [], [], [])
+            hit_count_table[file_name] = ([], [], [], [], [], [], [], [])
             count = count + 1
         if new_file or function_name != last_fun_name:
             # finished collecting data for a function
@@ -111,6 +115,7 @@ def create_block_features(version_name, data, perform_new_feature_extraction):
             hit_count_table[file_name][HC_FUN_LIST].append(func_hc)
             hit_count_table[file_name][LENGTH_FUN_LIST].append(int(row['Method_len']))
             hit_count_table[file_name][FLAG_FUN_LIST].append(row['Method_flags'])
+            hit_count_table[file_name][IS_CONSTRUCTOR_FUN_LIST].append(row['Is_constructor'])
         hit_count_table[file_name][HC_FUN_AND_BLOCK_LIST][-1][1].append(block_hc)
         hit_count_table[file_name][HC_BLOCK_LIST].append(block_hc)
         hit_count_table[file_name][TYPE_BLOCK_LIST].append(block_type)
@@ -383,6 +388,26 @@ def create_block_features(version_name, data, perform_new_feature_extraction):
             protected_hc_fun_unique = 0
             protected_hc_fun_per_zero = 0
 
+        constructor_bl_hc_list = create_filtered_list('yes', value[HC_FUN_LIST], value[IS_CONSTRUCTOR_FUN_LIST])
+        if constructor_bl_hc_list.__len__() > 0:
+            constructor_hc_fun_mean = np.mean(constructor_bl_hc_list)
+            constructor_hc_fun_std = np.std(constructor_bl_hc_list)
+            constructor_hc_fun_mid = np.median(constructor_bl_hc_list)
+            constructor_hc_fun_var = np.var(constructor_bl_hc_list)
+            constructor_hc_fun_min = min(constructor_bl_hc_list)
+            constructor_hc_fun_max = max(constructor_bl_hc_list)
+            constructor_hc_fun_unique = len(set(constructor_bl_hc_list))
+            constructor_hc_fun_per_zero = constructor_bl_hc_list.count(0) / num_of_funcs_in_file
+        else:
+            constructor_hc_fun_mean = 0
+            constructor_hc_fun_std = 0
+            constructor_hc_fun_mid = 0
+            constructor_hc_fun_var = 0
+            constructor_hc_fun_min = 0
+            constructor_hc_fun_max = 0
+            constructor_hc_fun_unique = 0
+            constructor_hc_fun_per_zero = 0
+
         max_fun_len = max(value[LENGTH_FUN_LIST])
         if max_fun_len != 0:
             fun_len_weight_bl_hc_list = [a * b / max_fun_len for a, b in
@@ -539,6 +564,15 @@ def create_block_features(version_name, data, perform_new_feature_extraction):
                     'Protected_hc_fun_max': protected_hc_fun_max,
                     'Protected_hc_fun_unique': protected_hc_fun_unique,
                     'Protected_hc_fun_per_zero': protected_hc_fun_per_zero,
+
+                    'Constructor_hc_fun_mean': constructor_hc_fun_mean,
+                    'Constructor_hc_fun_std': constructor_hc_fun_std,
+                    'Constructor_hc_fun_mid': constructor_hc_fun_mid,
+                    'Constructor_hc_fun_var': constructor_hc_fun_var,
+                    'Constructor_hc_fun_min': constructor_hc_fun_min,
+                    'Constructor_hc_fun_max': constructor_hc_fun_max,
+                    'Constructor_hc_fun_unique': constructor_hc_fun_unique,
+                    'Constructor_hc_fun_per_zero': constructor_hc_fun_per_zero,
 
                     'Fun_len_weight_hc_fun_mean': fun_len_weight_hc_fun_mean,
                     'Fun_len_weight_hc_fun_std': fun_len_weight_hc_fun_std,
