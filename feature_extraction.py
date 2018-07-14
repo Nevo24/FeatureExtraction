@@ -62,8 +62,18 @@ def create_block_features(version_name, data, perform_new_feature_extraction):
                                            'Exit_hc_block_unique', 'Exit_hc_block_per_zero', 'Inner_hc_block_mean',
                                            'Inner_hc_block_std', 'Inner_hc_block_median', 'Inner_hc_block_var',
                                            'Inner_hc_block_min', 'Inner_hc_block_max', 'Inner_hc_block_unique',
-                                           'Inner_hc_block_per_zero', 'Hc_fun_mean', 'Hc_fun_std', 'Hc_fun_median',
+                                           'Inner_hc_block_per_zero','Per_blocks_in_loop', 'Cond_per_blocks_in_loop',
+                                           'Goto_per_blocks_in_loop','Methenter_per_blocks_in_loop', 'Exit_per_blocks_in_loop',
+                                           'Hc_fun_mean', 'Hc_fun_std', 'Hc_fun_median',
                                            'Hc_fun_var', 'Hc_fun_min', 'Hc_fun_max', 'Hc_fun_unique', 'Hc_fun_per_zero',
+                                           'Fun_len_weight_hc_fun_mean', 'Fun_len_weight_hc_fun_std',
+                                           'Fun_len_weight_hc_fun_mid', 'Fun_len_weight_hc_fun_var',
+                                           'Fun_len_weight_hc_fun_min', 'Fun_len_weight_hc_fun_max',
+                                           'Fun_len_weight_hc_fun_unique', 'Fun_len_weight_hc_fun_per_zero',
+                                           'Num_of_bl_weight_hc_fun_mean', 'Num_of_bl_weight_hc_fun_std',
+                                           'Num_of_bl_weight_hc_fun_mid', 'Num_of_bl_weight_hc_fun_var',
+                                           'Num_of_bl_weight_hc_fun_min', 'Num_of_bl_weight_hc_fun_max',
+                                           'Num_of_bl_weight_hc_fun_unique', 'Num_of_bl_weight_hc_fun_per_zero',
                                            'Public_hc_fun_mean', 'Public_hc_fun_std', 'Public_hc_fun_mid',
                                            'Public_hc_fun_var', 'Public_hc_fun_min', 'Public_hc_fun_max',
                                            'Public_hc_fun_unique', 'Public_hc_fun_per_zero', 'Private_hc_fun_mean',
@@ -75,17 +85,7 @@ def create_block_features(version_name, data, perform_new_feature_extraction):
                                            'Protected_hc_fun_per_zero', 'Constructor_hc_fun_mean',
                                            'Constructor_hc_fun_std', 'Constructor_hc_fun_mid', 'Constructor_hc_fun_var',
                                            'Constructor_hc_fun_min', 'Constructor_hc_fun_max',
-                                           'Constructor_hc_fun_unique', 'Constructor_hc_fun_per_zero',
-                                           'Fun_len_weight_hc_fun_mean', 'Fun_len_weight_hc_fun_std',
-                                           'Fun_len_weight_hc_fun_mid', 'Fun_len_weight_hc_fun_var',
-                                           'Fun_len_weight_hc_fun_min', 'Fun_len_weight_hc_fun_max',
-                                           'Fun_len_weight_hc_fun_unique', 'Fun_len_weight_hc_fun_per_zero',
-                                           'Num_of_bl_weight_hc_fun_mean', 'Num_of_bl_weight_hc_fun_std',
-                                           'Num_of_bl_weight_hc_fun_mid', 'Num_of_bl_weight_hc_fun_var',
-                                           'Num_of_bl_weight_hc_fun_min', 'Num_of_bl_weight_hc_fun_max',
-                                           'Num_of_bl_weight_hc_fun_unique', 'Num_of_bl_weight_hc_fun_per_zero',
-                                           'Per_blocks_in_loop', 'Cond_per_blocks_in_loop', 'Goto_per_blocks_in_loop',
-                                           'Methenter_per_blocks_in_loop', 'Exit_per_blocks_in_loop'])
+                                           'Constructor_hc_fun_unique', 'Constructor_hc_fun_per_zero'])
 
     hit_count_table = {}  # {file_name:  [(fun_hc, [bl_hc_0, bl_hc_1,...,bl_hc_n])], [fun_hc_0, fun_hc_1,...,fun_hc_n], [bl_hc_0, bl_hc_1,...,bl_hc_n], [bl_type_0, bl_type_1, bl_type_2,..., bl_type_n], [bl_length_0, bl_length_1, bl_length_2,..., bl_length_n], [fun_length_0, fun_length_1, fun_length_2,..., fun_length_n],  [fun_flag_0, fun_flag_1, fun_flag_2,..., fun_flag_n], [is_const_0, is_const_1, is_const_2,..., is_const_n]}
     last_file_name = None
@@ -529,6 +529,12 @@ def create_block_features(version_name, data, perform_new_feature_extraction):
                     'Inner_hc_block_unique': inner_hc_block_unique,
                     'Inner_hc_block_per_zero': inner_hc_block_per_zero,
 
+                    'Per_blocks_in_loop': per_blocks_in_loop,
+                    'Cond_per_blocks_in_loop': cond_per_blocks_in_loop,
+                    'Goto_per_blocks_in_loop': goto_per_blocks_in_loop,
+                    'Methenter_per_blocks_in_loop': methenter_per_blocks_in_loop,
+                    'Exit_per_blocks_in_loop': exit_per_blocks_in_loop,
+
                     'Hc_fun_mean': hc_fun_mean,
                     'Hc_fun_std': hc_fun_std,
                     'Hc_fun_median': hc_fun_mid,
@@ -537,6 +543,24 @@ def create_block_features(version_name, data, perform_new_feature_extraction):
                     'Hc_fun_max': hc_fun_max,
                     'Hc_fun_unique': hc_fun_unique,
                     'Hc_fun_per_zero': hc_fun_per_zero,
+
+                    'Fun_len_weight_hc_fun_mean': fun_len_weight_hc_fun_mean,
+                    'Fun_len_weight_hc_fun_std': fun_len_weight_hc_fun_std,
+                    'Fun_len_weight_hc_fun_mid': fun_len_weight_hc_fun_mid,
+                    'Fun_len_weight_hc_fun_var': fun_len_weight_hc_fun_var,
+                    'Fun_len_weight_hc_fun_min': fun_len_weight_hc_fun_min,
+                    'Fun_len_weight_hc_fun_max': fun_len_weight_hc_fun_max,
+                    'Fun_len_weight_hc_fun_unique': fun_len_weight_hc_fun_unique,
+                    'Fun_len_weight_hc_fun_per_zero': fun_len_weight_hc_fun_per_zero,
+
+                    'Num_of_bl_weight_hc_fun_mean': num_of_bl_weight_hc_fun_mean,
+                    'Num_of_bl_weight_hc_fun_std': num_of_bl_weight_hc_fun_std,
+                    'Num_of_bl_weight_hc_fun_mid': num_of_bl_weight_hc_fun_mid,
+                    'Num_of_bl_weight_hc_fun_var': num_of_bl_weight_hc_fun_var,
+                    'Num_of_bl_weight_hc_fun_min': num_of_bl_weight_hc_fun_min,
+                    'Num_of_bl_weight_hc_fun_max': num_of_bl_weight_hc_fun_max,
+                    'Num_of_bl_weight_hc_fun_unique': num_of_bl_weight_hc_fun_unique,
+                    'Num_of_bl_weight_hc_fun_per_zero': num_of_bl_weight_hc_fun_per_zero,
 
                     'Public_hc_fun_mean': public_hc_fun_mean,
                     'Public_hc_fun_std': public_hc_fun_std,
@@ -574,29 +598,6 @@ def create_block_features(version_name, data, perform_new_feature_extraction):
                     'Constructor_hc_fun_unique': constructor_hc_fun_unique,
                     'Constructor_hc_fun_per_zero': constructor_hc_fun_per_zero,
 
-                    'Fun_len_weight_hc_fun_mean': fun_len_weight_hc_fun_mean,
-                    'Fun_len_weight_hc_fun_std': fun_len_weight_hc_fun_std,
-                    'Fun_len_weight_hc_fun_mid': fun_len_weight_hc_fun_mid,
-                    'Fun_len_weight_hc_fun_var': fun_len_weight_hc_fun_var,
-                    'Fun_len_weight_hc_fun_min': fun_len_weight_hc_fun_min,
-                    'Fun_len_weight_hc_fun_max': fun_len_weight_hc_fun_max,
-                    'Fun_len_weight_hc_fun_unique': fun_len_weight_hc_fun_unique,
-                    'Fun_len_weight_hc_fun_per_zero': fun_len_weight_hc_fun_per_zero,
-
-                    'Num_of_bl_weight_hc_fun_mean': num_of_bl_weight_hc_fun_mean,
-                    'Num_of_bl_weight_hc_fun_std': num_of_bl_weight_hc_fun_std,
-                    'Num_of_bl_weight_hc_fun_mid': num_of_bl_weight_hc_fun_mid,
-                    'Num_of_bl_weight_hc_fun_var': num_of_bl_weight_hc_fun_var,
-                    'Num_of_bl_weight_hc_fun_min': num_of_bl_weight_hc_fun_min,
-                    'Num_of_bl_weight_hc_fun_max': num_of_bl_weight_hc_fun_max,
-                    'Num_of_bl_weight_hc_fun_unique': num_of_bl_weight_hc_fun_unique,
-                    'Num_of_bl_weight_hc_fun_per_zero': num_of_bl_weight_hc_fun_per_zero,
-
-                    'Per_blocks_in_loop': per_blocks_in_loop,
-                    'Cond_per_blocks_in_loop': cond_per_blocks_in_loop,
-                    'Goto_per_blocks_in_loop': goto_per_blocks_in_loop,
-                    'Methenter_per_blocks_in_loop': methenter_per_blocks_in_loop,
-                    'Exit_per_blocks_in_loop': exit_per_blocks_in_loop,
                     }
         features_table = features_table.append(new_line, ignore_index=True)
     # endregion
