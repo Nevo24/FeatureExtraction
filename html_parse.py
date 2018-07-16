@@ -1,5 +1,6 @@
-import pandas as pd
 import os
+
+import pandas as pd
 from bs4 import BeautifulSoup
 
 upper_table = pd.DataFrame(index=[0],
