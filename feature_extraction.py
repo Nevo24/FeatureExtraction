@@ -39,7 +39,7 @@ def create_block_features(version_name, data, perform_new_feature_extraction):
         return pd.read_csv(table_name)
 
     features_table = pd.DataFrame(index=[0],
-                                  columns=['File Name', 'Hc_block_mean', 'Hc_block_std', 'Hc_block_median',
+                                  columns=['File Name','HC', 'Hc_block_mean', 'Hc_block_std', 'Hc_block_median',
                                            'Hc_block_var', 'Hc_block_min', 'Hc_block_max', 'Hc_block_unique',
                                            'Hc_block_per_zero', 'Weight_hc_block_mean', 'Weight_hc_block_std',
                                            'Weight_hc_block_median', 'Weight_hc_block_var', 'Weight_hc_block_min',
